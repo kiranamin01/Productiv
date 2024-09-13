@@ -1,3 +1,4 @@
+import { Bentham } from "next/font/google";
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -20,6 +21,12 @@ const config: Config = {
           DEFAULT: "20px",
           lg: "80px",
         },
+      },
+
+      fontFamily: {
+        sans: ['var(--font-inter)'],
+        mono: ['var(--font-roboto-mono)'],
+        Bentham: ['var(--font-Bentham)'],
       },
     },
   },
