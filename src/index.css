@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Orbitron&family=Pacifico&family=Roboto:ital,wght@0,100..900;1,100..900&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap");
+
+@layer components {
+  .logo-ticker-img {
+    margin-left: 2rem;
+    margin-right: 2rem;
+    height: 2rem;
+    width: auto;
+  }
+
+  .dashboard-card-box {
+    @apply resize overflow-auto min-w-[200px] min-h-[200px] max-w-[800px] max-h-[600px];
+  }
+
+  .pd-timer {
+    @apply text-7xl text-center text-white py-3;
+  }
+
+  .pd-switch-btn {
+    @apply p-3 rounded-full bg-red-400 hover:bg-red-500 transition-colors duration-200 flex items-center justify-center;
+  }
+}
