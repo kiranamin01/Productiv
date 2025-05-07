@@ -3,6 +3,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Orbitron&family=Pacifico&family=Roboto:ital,wght@0,100..900;1,100..900&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap");
 
 @layer components {
+  .bg-dotted {
+    @apply h-full w-full bg-white/25 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px];
+  }
+
+  .bg-dark-dotted {
+    @apply h-full w-full bg-blue-950 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px];
+  }
+
   .logo-ticker-img {
     margin-left: 2rem;
     margin-right: 2rem;
