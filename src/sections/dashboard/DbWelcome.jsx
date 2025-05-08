@@ -23,7 +23,7 @@ const DbWelcome = () => {
       </h2>
       <div
         className="ds-text flex justify-between p-6 rounded-xl shadow-lg backdrop-blur-sm bg-white/30 
-        bg-[url('/day-db.jpg')] dark:bg-[url('/night-db.jpg')] bg-top bg-cover mt-2"
+        bg-[url('/day-db.jpg')] dark:bg-[url('/night2-db.jpg')] bg-center bg-cover mt-2"
       >
         <div className="ds-text-left space-y-4 backdrop-blur-md bg-white/40 p-6 rounded-lg border border-white/20 hover:bg-white/50 transition-all duration-300">
           <div className="date-section">

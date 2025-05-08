@@ -10,7 +10,7 @@
   }
 
   .bg-dark-dotted {
-    @apply h-full w-full bg-gray-950 bg-[radial-gradient(#1f2937_1px,transparent_1px)] [background-size:16px_16px];
+    @apply h-full w-full bg-black bg-[radial-gradient(#404040_1px,transparent_1px)] [background-size:16px_16px];
   }
 
   .logo-ticker-img {
