@@ -49,7 +49,7 @@ const WeatherApi = () => {
           <img
             src={weatherData.current?.condition?.icon}
             alt={weatherData.current?.condition?.text}
-            className="w-12 h-12"
+            className="w-13 h-13"
           />
           <div className="text-gray-800">
             <p className="text-5xl font-bold">
