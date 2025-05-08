@@ -1,8 +1,11 @@
 import React from "react";
-import DbImg from "../../public/db-img1.jpg";
 import { FaPlay } from "react-icons/fa";
 import { FaPause } from "react-icons/fa";
 import { RiResetLeftLine } from "react-icons/ri";
+import DarkMode from "../DarkMode.jsx";
+
+import DB_Day from "../assets/day-db.jpg";
+import DB_Night from "../assets/night-db.jpg";
 
 import AlbumImage from "../assets/avatar-1.png";
 
@@ -14,39 +17,39 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-dotted">
+    <div className="dashboard-section min-h-screen bg-dotted dark:bg-gray-950 dark:bg-[radial-gradient(#1f2937_1px,transparent_1px)] dark:[background-size:16px_16px]">
       <div className="p-6 sm:p-8">
-        <div className="bg-orange-400 rounded-2xl shadow-lg p-6 sm:p-8 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div className="bg-orange-400/70 dark:bg-amber-800 rounded-2xl shadow-lg p-6 sm:p-8 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div className="space-y-1">
             <h1 className="text-3xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
-              Hello,{" "}
-              <span
-                className="animate-[wave_1s_ease-in-out_infinite] inline-block ml-1"
-                aria-hidden="true"
-                style={{ transformOrigin: "70% 70%" }}
-              >
-                👋🏻
-              </span>
-              <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+              Hello, <span className="wave-animation">👋🏻</span>
+              <span className="text-amber-200 dark:text-blue-200 font-[Poppins]">
                 Kiran Amin{" "}
               </span>
             </h1>
           </div>
 
           <div className="flex items-center gap-3">
-            <button className="px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 bg-gray-100 dark:bg-gray-700 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
-              Change Theme
+            <button className="px-4 py-2 text-sm font-medium flex items-center justify-center gap-2 text-gray-700 dark:text-gray-200 bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800 rounded-lg shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 border border-gray-200 dark:border-gray-600">
+              <DarkMode />
+              <span className="relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:bg-current after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300">
+                Change Theme
+              </span>
             </button>
             <button className="px-4 py-2 text-sm font-medium text-white bg-red-500 rounded-lg hover:bg-red-600 transition-colors">
               Logout
             </button>
           </div>
         </div>
+
         <div className="ds-welcome bg-amber-200 py-5 rounded my-2">
           <h2 className="text-gray-600 font-bold ml-5 text-xl font-[Poppins]">
             Welcome to DashBoard
           </h2>
-          <div className="ds-text flex justify-between p-6 rounded-xl shadow-lg backdrop-blur-sm bg-white/30 bg-[url('/db-img1.jpg')] bg-center bg-cover mt-2">
+          <div
+            className="ds-text flex justify-between p-6 rounded-xl shadow-lg backdrop-blur-sm bg-white/30 
+          bg-[url('/day-db.jpg')] dark:bg-[url('/night-db.jpg')] bg-top bg-cover mt-2"
+          >
             <div className="ds-text-left space-y-3 backdrop-blur-md bg-white/40 p-4 rounded-lg">
               <p className="text-2xl font-[Poppins] font-semibold text-gray-800">
                 {new Date().toLocaleDateString("en-US", {
@@ -169,7 +172,7 @@ const Dashboard = () => {
             </h3>
             <div className="pt-box bg-gray-500 p-3 rounded my-8">
               <div className="pt-box-clock bg-black/70 rounded">
-                <h4 className="pd-timer font-[Orbitron]">20:03:04</h4>
+                <h4 className="pd-timer font-[Orbitron]">00:25:00</h4>
               </div>
             </div>
             <div className="pt-switch bg-red-200 rounded-full flex justify-evenly gap-5 py-2">
