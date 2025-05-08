@@ -1,8 +1,7 @@
 import React from "react";
-import { FaPlay } from "react-icons/fa";
-import { FaPause } from "react-icons/fa";
-import { RiResetLeftLine } from "react-icons/ri";
 import DarkMode from "../DarkMode.jsx";
+
+import Pomodoro from "../sections/dashboard/Pomodoro.jsx";
 
 import DB_Day from "../assets/day-db.jpg";
 import DB_Night from "../assets/night-db.jpg";
@@ -166,27 +165,7 @@ const Dashboard = () => {
             />
           </div>
 
-          <div className="pomodoro-timer bg-red-100 p-4 rounded-lg shadow dashboard-card-box">
-            <h3 className="font-bold mb-2 text-red-800 text-xl font-[Poppins] flex items-center gap-2">
-              ⏲️ Pomodoro Timer
-            </h3>
-            <div className="pt-box bg-gray-500 p-3 rounded my-8">
-              <div className="pt-box-clock bg-black/70 rounded">
-                <h4 className="pd-timer font-[Orbitron]">00:25:00</h4>
-              </div>
-            </div>
-            <div className="pt-switch bg-red-200 rounded-full flex justify-evenly gap-5 py-2">
-              <button className="play-btn pd-switch-btn">
-                <FaPlay className="text-white text-xl" />
-              </button>
-              <button className="pause-btn pd-switch-btn">
-                <FaPause />
-              </button>
-              <button className="reset-btn pd-switch-btn">
-                <RiResetLeftLine />
-              </button>
-            </div>
-          </div>
+          <Pomodoro />
 
           <div className="music-player bg-indigo-300 p-4 rounded-lg shadow dashboard-card-box">
             <h3 className="font-bold mb-2 text-indigo-800 text-xl font-[Poppins] flex items-center gap-2">
