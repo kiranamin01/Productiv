@@ -15,9 +15,9 @@ const DbHello = () => {
       </div>
 
       <div className="flex items-center gap-3">
-        <button className="px-4 py-2 text-sm font-medium flex items-center justify-center gap-2 text-gray-700 dark:text-gray-200 bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800 rounded-lg shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 border border-gray-200 dark:border-gray-600">
+        <button className="px-2 py-1  text-sm font-semibold flex items-center justify-center gap-3 text-slate-800 dark:text-white bg-gradient-to-r from-amber-100 to-amber-200 dark:from-slate-800 dark:to-slate-700 rounded-xl shadow-lg hover:shadow-amber-200/50 dark:hover:shadow-slate-700/50 hover:scale-105 active:scale-95 transition-all duration-300 border border-amber-300/30 dark:border-slate-600">
           <DarkMode />
-          <span className="relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:bg-current after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300">
+          <span className="relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-amber-500 dark:after:bg-slate-400 after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-500 after:ease-in-out">
             Change Theme
           </span>
         </button>

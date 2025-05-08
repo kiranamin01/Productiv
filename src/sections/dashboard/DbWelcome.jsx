@@ -16,10 +16,10 @@ const DbWelcome = () => {
 
   return (
     <div className="ds-welcome bg-amber-200 py-5 rounded my-2">
-      <h2 className="text-gray-600 font-bold ml-5 text-2xl font-['Montserrat'] flex items-center gap-2">
+      <h2 className="text-gray-600 font-bold ml-4 text-2xl font-['Montserrat'] flex items-center gap-2">
         <span className="animate-bounce">✨</span>
         Welcome to Dashboard
-        <span className="animate-pulse">🎯</span>
+        <span className="animate-pulse text-3xl">🎯</span>
       </h2>
       <div
         className="ds-text flex justify-between p-6 rounded-xl shadow-lg backdrop-blur-sm bg-white/30 

@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { WiDaySunny, WiNightClear } from "react-icons/wi";
+import { FcNightLandscape } from "react-icons/fc";
+import { FcLandscape } from "react-icons/fc";
 
 const DarkMode = () => {
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
     if (isDark) {
-      document.documentElement.classList.add('dark');
+      document.documentElement.classList.add("dark");
     } else {
-      document.documentElement.classList.remove('dark');
+      document.documentElement.classList.remove("dark");
     }
   }, [isDark]);
 
@@ -17,13 +18,15 @@ const DarkMode = () => {
   };
 
   return (
-    <button onClick={toggleDarkMode} className="dark-mode-btn text-center">
-      {isDark ? (
-        <WiDaySunny className="text-4xl" />
-      ) : (
-        <WiNightClear className="text-4xl" />
-      )}
-    </button>
+    <>
+      <button onClick={toggleDarkMode} className="dark-mode-btn text-center">
+        {isDark ? (
+          <FcLandscape className="text-3xl p-1" />
+        ) : (
+          <FcNightLandscape className="text-3xl p-1" />
+        )}
+      </button>
+    </>
   );
 };
 
