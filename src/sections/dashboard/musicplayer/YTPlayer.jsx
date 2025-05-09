@@ -18,6 +18,8 @@ const YTPlayer = ({ videoId: initialVideoId }) => {
     setDuration(event.target.getDuration());
   }, []);
 
+  
+
   const handlePlayPause = useCallback(() => {
     if (player) {
       isPlaying ? player.pauseVideo() : player.playVideo();
@@ -129,7 +131,7 @@ const YTPlayer = ({ videoId: initialVideoId }) => {
               className="absolute inset-0 bg-black/40 backdrop-blur-md cursor-none"
               style={{ zIndex: 1 }}
             >
-              <MusicWave />
+              {isPlaying && <MusicWave />}
             </div>
           )}
         </div>
