@@ -4,7 +4,6 @@ import YTPlayer from "./musicplayer/YTPlayer";
 const MusicPlayer = () => {
   let ytLink = "https://youtu.be/t8OZPJfpcTM?si=DHl_yhq6pvBGuWU-";
   const ytvideoId = ytLink.slice(17);
-  console.log(ytvideoId);
   return (
     <>
       <div className="music-player bg-indigo-300 p-4 rounded-lg shadow dashboard-card-box">

@@ -1,6 +1,14 @@
 import React from "react";
 
 const Motivation = () => {
+  const options = { method: "GET", body: "{}" };
+  fetch(
+    "https://indian-quotes-api.vercel.app/api/quotes?page=1&limit=10&author=Ratan%20Tata&company=Tata",
+    options
+  )
+    .then((response) => response.json())
+    .then((response) => console.log(response))
+    .catch((err) => console.error(err));
   return (
     <div className="motivation bg-yellow-100 p-4 rounded-lg shadow dashboard-card-box">
       <h3 className="font-bold mb-2 text-yellow-800 text-xl font-[Poppins] flex items-center gap-2">
@@ -16,3 +24,9 @@ const Motivation = () => {
 };
 
 export default Motivation;
+
+// const options = {method: 'GET', body: '{}'};
+// fetch('https://indian-quotes-api.vercel.app/api/quotes?page=1&limit=10&author=Ratan%20Tata&company=Tata', options)
+// .then(response => response.json())
+// .then(response => console.log(response))
+// .catch(err => console.error(err));

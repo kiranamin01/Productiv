@@ -18,8 +18,6 @@ const YTPlayer = ({ videoId: initialVideoId }) => {
     setDuration(event.target.getDuration());
   }, []);
 
-  
-
   const handlePlayPause = useCallback(() => {
     if (player) {
       isPlaying ? player.pauseVideo() : player.playVideo();

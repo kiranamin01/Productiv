@@ -21,7 +21,6 @@ const WeatherApi = () => {
       try {
         const response = await fetch(url, options);
         const data = await response.json();
-        console.log("Weather API Response:", data);
         setWeatherData(data);
         setLoading(false);
       } catch (error) {
