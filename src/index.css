@@ -13,6 +13,18 @@
     @apply h-full w-full bg-black/50 bg-[radial-gradient(#404040_1px,transparent_1px)] [background-size:16px_16px];
   }
 
+  .bg-stripes {
+    background-size: 100% 2em;
+    background-position: 0 0.5em;
+    background-image: linear-gradient(
+      to bottom,
+      transparent 1em,
+      rgba(0, 0, 0, 0.1) 1em,
+      rgba(0, 0, 0, 0.1) 1.1em,
+      transparent 1.1em
+    );
+  }
+
   .logo-ticker-img {
     margin-left: 2rem;
     margin-right: 2rem;

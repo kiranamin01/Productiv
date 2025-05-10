@@ -32,6 +32,22 @@ const Motivation = () => {
     fetchQuote();
   }, [fetchQuote]);
 
+  const [personalMotivation, setPersonalMotivation] = useState("");
+  const [savedMotivations, setSavedMotivations] = useState([]);
+
+  const handleSaveMotivation = () => {
+    if (personalMotivation.trim()) {
+      setSavedMotivations([
+        ...savedMotivations,
+        {
+          text: personalMotivation,
+          date: new Date().toLocaleDateString(),
+        },
+      ]);
+      setPersonalMotivation("");
+    }
+  };
+
   return (
     <div className="motivation bg-yellow-100 p-4 rounded-lg shadow dashboard-card-box">
       <h3 className="font-bold mb-2 text-yellow-800 text-xl font-[Poppins] flex items-center gap-2">
@@ -49,42 +65,70 @@ const Motivation = () => {
             <p className="text-yellow-700 font-[Poppins] text-lg italic">
               "{quote.quote}"
             </p>
-            <p className="text-yellow-600 font-[Poppins] mt-2 text-sm">
+            <p className="text-yellow-600 font-[Poppins] mt-5 text-sm">
               - {quote.author}
             </p>
+            <div className="reload-btn mt-1 flex justify-end">
+              <button
+                onClick={() => {
+                  setLoading(true);
+                  setError(null);
+                  fetchQuote();
+                }}
+                className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-lg font-[Poppins] text-sm flex items-center gap-2 transition-colors"
+              >
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                  />
+                </svg>
+                New Quote
+              </button>
+            </div>
           </div>
         )}
-        <div className="reload-btn mt-4 flex justify-end">
+      </div>
+      <div className="personal-motivation-section">
+        <textarea
+          value={personalMotivation}
+          onChange={(e) => setPersonalMotivation(e.target.value)}
+          className="w-full p-2 rounded border border-yellow-200 focus:ring-2 focus:ring-yellow-400 focus:outline-none font-[Poppins] text-lg bg-gradient-to-b from-yellow-50 to-yellow-50 bg-stripes"
+          placeholder="Write your motivation for a Day..."
+          rows="4"
+        />
+        <div className="flex justify-end mt-2">
           <button
-            onClick={() => {
-              setLoading(true);
-              setError(null);
-              fetchQuote();
-            }}
-            className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-lg font-[Poppins] text-sm flex items-center gap-2 transition-colors"
+            onClick={handleSaveMotivation}
+            className="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-lg font-[Poppins] text-sm transition-colors"
           >
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-              />
-            </svg>
-            New Quote
+            Save Motivation
           </button>
         </div>
+
+        {savedMotivations.length > 0 && (
+          <div className="saved-motivations mt-4">
+            <h4 className="font-bold text-yellow-800 mb-2">Your Motivations</h4>
+            <div className="space-y-2">
+              {savedMotivations.map((motivation, index) => (
+                <div key={index} className="bg-white/30 p-3 rounded-lg">
+                  <p className="text-yellow-700">{motivation.text}</p>
+                  <p className="text-xs text-yellow-600 mt-1">
+                    {motivation.date}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
-      <textarea
-        className="w-full p-2 rounded border border-yellow-200 focus:ring-2 focus:ring-yellow-400 focus:outline-none font-[Poppins] text-lg"
-        placeholder="Write your motivation for a Day..."
-        rows="4"
-      />
     </div>
   );
 };
