@@ -32,13 +32,13 @@ const DbWelcome = () => {
               {formattedDate.split(" ")[0]} {formattedDate.split(" ")[1]}{" "}
               {formattedDate.split(" ")[2]}
             </p>
-            <p className="text-4xl font-[Orbitron] font-bold text-center flex items-center justify-center gap-2 text-gray-700 mt-2 rounded-lg">
-              <h4>{formattedDate.split(" ")[3].split(":")[0]}</h4>
+            <div className="text-4xl font-[Orbitron] font-bold text-center flex items-center justify-center gap-2 text-gray-700 mt-2 rounded-lg">
+              <span>{formattedDate.split(" ")[3].split(":")[0]}</span>
               <span className="text-gray-400 animate-pulse">:</span>
-              <h4>{formattedDate.split(" ")[3].split(":")[1]}</h4>
+              <span>{formattedDate.split(" ")[3].split(":")[1]}</span>
               <span className="text-gray-400 animate-pulse">:</span>
-              <h4>{formattedDate.split(" ")[3].split(":")[2]}</h4>
-            </p>
+              <span>{formattedDate.split(" ")[3].split(":")[2]}</span>
+            </div>
           </div>
 
           <div className="location-section mt-4 border-t border-gray-200/30 pt-4">
@@ -70,9 +70,9 @@ const DbWelcome = () => {
         </div>
 
         <div className="ds-text-right flex items-center backdrop-blur-md bg-white/40 p-4 rounded-lg">
-          <p className="text-3xl font-bold text-gray-800 flex items-center gap-3">
-            <WeatherApi />
-          </p>
+          <div className="text-3xl font-bold text-gray-800 flex items-center gap-3">
+            {typeof window !== "undefined" && <WeatherApi />}
+          </div>
         </div>
       </div>
     </div>
