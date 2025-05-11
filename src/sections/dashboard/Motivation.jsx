@@ -18,7 +18,6 @@ const Motivation = () => {
 
     try {
       const response = await axios.request(options);
-      console.log("Quote API Response:", response.data);
       setQuote(response.data);
       setLoading(false);
     } catch (error) {
