@@ -119,11 +119,11 @@ const Dashboard = () => {
                 {items.map((item) => (
                   <SortableItem key={item.id} id={item.id}>
                     <div
-                      className={`component-wrapper transition-all duration-300 ease-in-out ${
-                        item.size === 2
+                      className={`component-wrapper transition-all duration-300 ease-in-out bg-transparent ${
+                        item.component.props.size === 2
                           ? "sm:col-span-2 lg:col-span-2 xl:col-span-2 transform hover:scale-[1.02]"
                           : "transform hover:scale-[1.01]"
-                      } relative group bg-white/5 backdrop-blur-sm rounded-lg shadow-lg`}
+                      } relative group rounded-lg shadow-lg`}
                     >
                       <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity z-10">
                         <button
@@ -137,14 +137,16 @@ const Dashboard = () => {
                             );
                           }}
                           className="righttick p-2 bg-white/20 rounded-full hover:bg-white/30 transition-all duration-300"
-                          title={item.size === 2 ? "Unpin" : "Pin"}
+                          title={
+                            item.component.props.size === 2 ? "Unpin" : "Pin"
+                          }
                         >
                           <svg
                             className="w-5 h-5"
                             viewBox="0 0 24 24"
                             fill="currentColor"
                           >
-                            {item.size === 2 ? (
+                            {item.component.props.size === 2 ? (
                               <path d="M16,12V4H17V2H7V4H8V12L6,14V16H11.2V22H12.8V16H18V14L16,12Z" />
                             ) : (
                               <path d="M16,12V4H17V2H7V4H8V12L6,14V16H11.2V22H12.8V16H18V14L16,12M8.8,14L10,12.8V4H14V12.8L15.2,14H8.8Z" />
@@ -163,11 +165,11 @@ const Dashboard = () => {
               {items.map((item) => (
                 <div key={item.id}>
                   <div
-                    className={`component-wrapper transition-all duration-300 ease-in-out ${
-                      item.size === 2
+                    className={`component-wrapper transition-all duration-300 ease-in-out bg-transparent ${
+                      item.component.props.size === 2
                         ? "sm:col-span-2 lg:col-span-2 xl:col-span-2 transform hover:scale-[1.02]"
                         : "transform hover:scale-[1.01]"
-                    } relative group bg-white/5 backdrop-blur-sm rounded-lg shadow-lg`}
+                    } relative group backdrop-blur-sm rounded-lg shadow-lg`}
                   >
                     <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
                     {item.component}
