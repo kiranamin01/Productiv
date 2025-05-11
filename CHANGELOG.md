@@ -4,7 +4,33 @@ All notable changes to Productiv.ai will be documented in this file.
 
 ## [Unreleased]
 
-## [0.1.0] - 2025-01-11
+## [0.1.1] - 2025-05-12
+
+### Added
+- Drag and drop functionality for dashboard components
+- Pin/Unpin feature for component resizing
+- Component header standardization across dashboard
+- Real-time clock with date display
+- Enhanced weather widget integration
+- Backdrop blur effects and gradient backgrounds
+
+### UI/UX Improvements
+- Consistent header design across all dashboard components
+- Improved component sizing and spacing
+- Enhanced component hover effects
+- Smooth transitions for dark/light mode
+- Interactive drag-and-sort toggle button
+
+### Technical Updates
+- Updated React dependencies to latest versions
+- Integrated essential npm packages:
+  - date-fns for date handling
+  - axios for API calls
+  - styled-components for advanced styling
+  - react-icons for UI icons
+- Added ESLint configuration
+
+## [0.1.0] - 2025-05-11
 
 ### Added
 
