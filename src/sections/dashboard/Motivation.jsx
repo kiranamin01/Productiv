@@ -9,10 +9,14 @@ const Motivation = () => {
   const fetchQuote = useCallback(async () => {
     const options = {
       method: "GET",
-      url: "https://stoicism-api.p.rapidapi.com/api/random_quote",
+      url: "https://quotes-inspirational-quotes-motivational-quotes.p.rapidapi.com/quote",
+      params: {
+        token: "ipworld.info",
+      },
       headers: {
-        "X-RapidAPI-Key": "9477a275e8mshaea7fb8d9b8f72cp17c948jsn1fbb7ad73afa",
-        "X-RapidAPI-Host": "stoicism-api.p.rapidapi.com",
+        "x-rapidapi-key": "9477a275e8mshaea7fb8d9b8f72cp17c948jsn1fbb7ad73afa",
+        "x-rapidapi-host":
+          "quotes-inspirational-quotes-motivational-quotes.p.rapidapi.com",
       },
     };
 
@@ -64,7 +68,7 @@ const Motivation = () => {
         {quote && (
           <div className="bg-white/50 p-4 rounded-lg">
             <p className="text-yellow-700 font-[Poppins] text-lg italic">
-              "{quote.quote}"
+              "{quote.text}"
             </p>
             <p className="text-yellow-600 font-[Poppins] mt-5 text-sm">
               - {quote.author}
