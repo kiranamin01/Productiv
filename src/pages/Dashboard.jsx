@@ -111,7 +111,7 @@ const Dashboard = () => {
             </button>
           </div>
           {isSortingEnabled ? (
-            <div className="ds-whiteboard w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-4">
+            <div className="ds-whiteboard w-full grid sm:grid-cols-2 lg:grid-cols-3 lg:grid-rows-2 xl:grid-cols-4 gap-4 p-4">
               <SortableContext
                 items={items.map((item) => item.id)}
                 strategy={rectSortingStrategy}
@@ -161,7 +161,7 @@ const Dashboard = () => {
               </SortableContext>
             </div>
           ) : (
-            <div className="ds-whiteboard w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-4">
+            <div className="ds-whiteboard w-full grid sm:grid-cols-2 lg:grid-cols-3 lg:grid-rows-2 xl:grid-cols-4 gap-4 p-4">
               {items.map((item) => (
                 <div key={item.id}>
                   <div
