@@ -7,9 +7,11 @@ const MusicPlayer = () => {
   return (
     <>
       <div className="music-player bg-indigo-300 p-4 rounded-lg shadow dashboard-card-box">
-        <h3 className="font-bold mb-2 text-indigo-800 text-xl font-[Poppins] flex items-center gap-2">
-          🎵 Music Player
-        </h3>
+        <div className="header flex justify-between items-center">
+          <h3 className="font-bold mb-2 text-indigo-800 text-xl font-[Poppins] flex items-center gap-2">
+            🎵 Music Player
+          </h3>
+        </div>
         <YTPlayer videoId={ytvideoId} />
       </div>
     </>

@@ -60,9 +60,11 @@ const Pomodoro = () => {
 
   return (
     <div className="pomodoro-timer bg-red-100 p-4 rounded-lg shadow dashboard-card-box">
-      <h3 className="font-bold mb-2 text-red-800 text-xl font-[Poppins] flex items-center gap-2">
-        ⏲️ Pomodoro Timer
-      </h3>
+      <div className="header flex justify-between items-center">
+        <h3 className="font-bold mb-2 text-red-800 text-xl font-[Poppins] flex items-center gap-2">
+          ⏲️ Pomodoro Timer
+        </h3>
+      </div>
       <div className="pt-box bg-gray-500 p-3 rounded my-8">
         <div className="pt-box-clock bg-black/70 rounded">
           <h4 className="pd-timer font-[Orbitron]">

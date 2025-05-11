@@ -49,9 +49,11 @@ const Motivation = () => {
 
   return (
     <div className="motivation bg-yellow-100 p-4 rounded-lg shadow dashboard-card-box">
-      <h3 className="font-bold mb-2 text-yellow-800 text-xl font-[Poppins] flex items-center gap-2">
-        💪 Motivation
-      </h3>
+      <div className="header flex justify-between items-center">
+        <h3 className="font-bold mb-2 text-yellow-800 text-xl font-[Poppins] flex items-center gap-2">
+          💪 Motivation
+        </h3>
+      </div>
       <div className="quoteapi mb-4">
         {loading && (
           <p className="text-yellow-700 font-[Poppins]">
