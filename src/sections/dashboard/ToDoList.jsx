@@ -9,8 +9,11 @@ import { CSS } from "@dnd-kit/utilities";
 
 // Task component with drag-and-drop functionality
 const Task = ({ id, content, status, onDelete, onEdit, onStatusChange }) => {
+  // Ensure 'id' passed to useSortable is a string if it's not already.
+  // However, consistency is key; if task IDs are numbers, use numbers everywhere for dnd-kit.
+  // For this example, we'll assume IDs are consistently strings as per changes in ToDoList.
   const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({ id });
+    useSortable({ id: String(id) }); // Ensure id is a string for useSortable
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
@@ -44,7 +47,10 @@ const Task = ({ id, content, status, onDelete, onEdit, onStatusChange }) => {
             <option value="done">✅ Done</option>
           </select>
           <button
-            onClick={() => onEdit(id)}
+            onClick={() => {
+              console.log(`[Task] Edit button clicked for ID: ${id}`);
+              onEdit(id);
+            }}
             onPointerDown={(e) => e.stopPropagation()} // Prevent drag from starting on button click
             className="text-blue-500 hover:text-blue-700 p-1 rounded-full hover:bg-blue-100 transition-colors"
             title="Edit"
@@ -53,7 +59,10 @@ const Task = ({ id, content, status, onDelete, onEdit, onStatusChange }) => {
             ✏️
           </button>
           <button
-            onClick={() => onDelete(id)}
+            onClick={() => {
+              console.log(`[Task] Delete button clicked for ID: ${id}`);
+              onDelete(id);
+            }}
             onPointerDown={(e) => e.stopPropagation()} // Prevent drag from starting on button click
             className="text-red-500 hover:text-red-700 p-1 rounded-full hover:bg-red-100 transition-colors"
             title="Delete"
@@ -74,27 +83,26 @@ const ToDoList = () => {
     done: [],
   });
   const [newTask, setNewTask] = useState("");
-  const [editingTask, setEditingTask] = useState(null);
+  const [editingTask, setEditingTask] = useState(null); // Stores the whole task object being edited
 
   const addTask = () => {
     if (newTask.trim()) {
+      const newId = String(Date.now()); // Ensure ID is a string
       setTasks((prev) => ({
         ...prev,
-        todo: [
-          ...prev.todo,
-          { id: Date.now(), content: newTask, status: "todo" },
-        ],
+        todo: [...prev.todo, { id: newId, content: newTask, status: "todo" }],
       }));
       setNewTask("");
     }
   };
 
   const deleteTask = (taskId) => {
+    console.log("[ToDoList] deleteTask called with taskId:", taskId);
     setTasks((prev) => {
       const newTasks = { ...prev };
-      Object.keys(newTasks).forEach((status) => {
-        newTasks[status] = newTasks[status].filter(
-          (task) => task.id !== taskId
+      Object.keys(newTasks).forEach((statusKey) => {
+        newTasks[statusKey] = newTasks[statusKey].filter(
+          (task) => String(task.id) !== String(taskId) // Compare as strings
         );
       });
       return newTasks;
@@ -102,22 +110,46 @@ const ToDoList = () => {
   };
 
   const editTask = (taskId) => {
-    Object.keys(tasks).forEach((status) => {
-      const task = tasks[status].find((t) => t.id === taskId);
-      if (task) {
-        setEditingTask(task);
-        setNewTask(task.content);
+    console.log("[ToDoList] editTask called with taskId:", taskId);
+    let taskToEdit = null;
+    // Find the task across all statuses
+    for (const statusKey in tasks) {
+      const foundTask = tasks[statusKey].find(
+        (task) => String(task.id) === String(taskId) // Compare as strings
+      );
+      if (foundTask) {
+        taskToEdit = foundTask;
+        break;
       }
-    });
+    }
+
+    if (taskToEdit) {
+      console.log("[ToDoList] editTask - task found:", taskToEdit);
+      setEditingTask(taskToEdit); // Set the entire task object
+      setNewTask(taskToEdit.content);
+    } else {
+      console.warn("[ToDoList] editTask - task NOT found with taskId:", taskId);
+    }
   };
 
   const updateTask = () => {
     if (editingTask && newTask.trim()) {
+      console.log(
+        "[ToDoList] updateTask called for task:",
+        editingTask.id,
+        "New content:",
+        newTask
+      );
       setTasks((prev) => {
         const newTasks = { ...prev };
-        Object.keys(newTasks).forEach((status) => {
-          newTasks[status] = newTasks[status].map((task) =>
-            task.id === editingTask.id ? { ...task, content: newTask } : task
+        // The task being edited retains its original status unless explicitly changed by handleStatusChange
+        const originalStatus = editingTask.status;
+
+        Object.keys(newTasks).forEach((statusKey) => {
+          newTasks[statusKey] = newTasks[statusKey].map((task) =>
+            String(task.id) === String(editingTask.id) // Compare as strings
+              ? { ...task, content: newTask, status: originalStatus } // Update content, keep original status
+              : task
           );
         });
         return newTasks;
@@ -128,43 +160,107 @@ const ToDoList = () => {
   };
 
   const handleStatusChange = (taskId, newStatus) => {
+    console.log(
+      `[ToDoList] handleStatusChange called for taskId: ${taskId}, newStatus: ${newStatus}`
+    );
     setTasks((prev) => {
       const newTasks = { ...prev };
       let taskToMove;
+      let originalStatusOfTask;
 
       // Find and remove the task from its current status
-      Object.keys(newTasks).forEach((status) => {
-        const taskIndex = newTasks[status].findIndex(
-          (task) => task.id === taskId
+      Object.keys(newTasks).forEach((currentStatusKey) => {
+        const taskIndex = newTasks[currentStatusKey].findIndex(
+          (task) => String(task.id) === String(taskId) // Compare as strings
         );
         if (taskIndex !== -1) {
-          [taskToMove] = newTasks[status].splice(taskIndex, 1);
+          originalStatusOfTask = currentStatusKey;
+          [taskToMove] = newTasks[currentStatusKey].splice(taskIndex, 1);
         }
       });
 
-      // Add the task to its new status column
       if (taskToMove) {
-        newTasks[newStatus] = [
-          ...newTasks[newStatus],
-          { ...taskToMove, status: newStatus },
-        ];
+        console.log(
+          `[ToDoList] Moving task:`,
+          taskToMove,
+          `from status: ${originalStatusOfTask} to status: ${newStatus}`
+        );
+        if (!newTasks[newStatus]) {
+          newTasks[newStatus] = []; // Ensure the target status array exists
+        }
+        newTasks[newStatus].push({ ...taskToMove, status: newStatus });
+      } else {
+        console.warn(
+          `[ToDoList] handleStatusChange: Task with id ${taskId} not found to move.`
+        );
       }
-
       return newTasks;
     });
   };
 
   const handleDragEnd = (event) => {
     const { active, over } = event;
-    if (active.id !== over.id) {
-      // Handle drag and drop logic here
-      const activeTask = Object.keys(tasks).reduce((found, status) => {
-        return found || tasks[status].find((task) => task.id === active.id);
-      }, null);
 
-      if (activeTask) {
-        handleStatusChange(active.id, over.data.current.sortable.containerId);
+    if (!over) {
+      console.log(
+        "[ToDoList] handleDragEnd: No 'over' target. Drag cancelled."
+      );
+      return;
+    }
+
+    const activeId = String(active.id);
+    const overId = String(over.id); // Can be a task ID or a column ID (statusKey)
+
+    console.log(
+      "[ToDoList] handleDragEnd: activeId:",
+      activeId,
+      "overId:",
+      overId
+    );
+
+    // Find the task being dragged
+    let activeTask = null;
+    let originalStatus = null;
+    for (const statusKey in tasks) {
+      const found = tasks[statusKey].find(
+        (task) => String(task.id) === activeId
+      );
+      if (found) {
+        activeTask = found;
+        originalStatus = statusKey;
+        break;
       }
+    }
+
+    if (!activeTask) {
+      console.error(
+        "[ToDoList] handleDragEnd: Active task not found in state for id:",
+        activeId
+      );
+      return;
+    }
+
+    // Determine the new status/column
+    // 'over.data.current.sortable.containerId' is the ID of the SortableContext if dropped on an item
+    // 'over.id' is the ID of the SortableContext if dropped directly on the column
+    const newStatus =
+      over.data.current?.sortable?.containerId ||
+      (tasks.hasOwnProperty(overId) ? overId : null);
+
+    if (newStatus && newStatus !== originalStatus) {
+      console.log(
+        `[ToDoList] handleDragEnd: Calling handleStatusChange for task ${activeId} from ${originalStatus} to ${newStatus}`
+      );
+      handleStatusChange(activeId, newStatus);
+    } else if (newStatus && newStatus === originalStatus) {
+      console.log(
+        `[ToDoList] handleDragEnd: Task ${activeId} dropped in the same column ${newStatus}. No status change.`
+      );
+      // Implement reordering logic here if needed
+    } else {
+      console.log(
+        `[ToDoList] handleDragEnd: Could not determine valid new status or no status change needed. Original: ${originalStatus}, Target container/item: ${overId}`
+      );
     }
   };
 
@@ -197,31 +293,32 @@ const ToDoList = () => {
 
       <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
         <div className="space-y-4">
-          {Object.entries(tasks).map(([status, statusTasks]) => (
+          {" "}
+          {/* This maintains the vertical stacking of columns */}
+          {Object.entries(tasks).map(([statusKey, statusTasks]) => (
             <div
-              key={status}
+              key={statusKey}
               className="status bg-white/30 backdrop-blur-sm p-4 rounded-lg border border-purple-200/30 shadow-sm"
             >
               <div className="flex items-center gap-2 mb-3">
                 <h4 className="font-semibold text-purple-800 capitalize">
-                  {status === "todo" && "📋 To Do"}
-                  {status === "inProgress" && "🔄 In Progress"}
-                  {status === "done" && "✅ Done"}
+                  {statusKey === "todo" && "📋 To Do"}
+                  {statusKey === "inProgress" && "🔄 In Progress"}
+                  {statusKey === "done" && "✅ Done"}
                 </h4>
-                <span className="text-sm text-purple-600 bg-purple-100 px-2 py-0.5 rounded-full">
+                <span className="text-sm text-purple-600 bg-purple-100 px-2 py-0.5 rounded-full ml-auto">
                   {statusTasks.length}
                 </span>
               </div>
-              {/* // In the SortableContext section, make sure to pass the props
-              explicitly */}
               <SortableContext
-                items={statusTasks.map((task) => task.id)}
+                id={statusKey} // ID for the sortable context (e.g., "todo", "inProgress")
+                items={statusTasks.map((task) => String(task.id))} // Ensure task IDs are strings
                 strategy={verticalListSortingStrategy}
               >
                 {statusTasks.map((task) => (
                   <Task
-                    key={task.id}
-                    id={task.id}
+                    key={String(task.id)} // Ensure key is also string
+                    id={String(task.id)} // Pass id as string
                     content={task.content}
                     status={task.status}
                     onDelete={deleteTask}
@@ -229,6 +326,11 @@ const ToDoList = () => {
                     onStatusChange={handleStatusChange}
                   />
                 ))}
+                {statusTasks.length === 0 && (
+                  <div className="text-center py-4 text-purple-500/50 italic">
+                    No tasks here
+                  </div>
+                )}
               </SortableContext>
             </div>
           ))}
