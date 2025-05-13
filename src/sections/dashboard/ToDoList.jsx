@@ -245,7 +245,7 @@ const ToDoList = () => {
     // 'over.id' is the ID of the SortableContext if dropped directly on the column
     const newStatus =
       over.data.current?.sortable?.containerId ||
-      (tasks.hasOwnProperty(overId) ? overId : null);
+      (Object.prototype.hasOwnProperty.call(tasks, overId) ? overId : null);
 
     if (newStatus && newStatus !== originalStatus) {
       console.log(

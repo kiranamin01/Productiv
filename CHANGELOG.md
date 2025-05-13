@@ -4,9 +4,27 @@ All notable changes to Productiv.ai will be documented in this file.
 
 ## [Unreleased]
 
-## [0.1.1] - 2025-05-12
+## [0.1.6] - 2025-05-13
 
 ### Added
+
+- Kanban-style To-Do List with drag-and-drop functionality
+- Task status management (Todo, In Progress, Done)
+- Interactive task editing and deletion
+- Visual status indicators for different task states
+- Task counter for each status column
+
+### UI/UX Improvements
+
+- Smooth drag-and-drop animations for tasks
+- Status-based color coding for tasks
+- Responsive task management interface
+- Interactive task editing controls
+
+## [0.1.5] - 2025-05-12
+
+### Added
+
 - Drag and drop functionality for dashboard components
 - Pin/Unpin feature for component resizing
 - Component header standardization across dashboard
@@ -15,6 +33,7 @@ All notable changes to Productiv.ai will be documented in this file.
 - Backdrop blur effects and gradient backgrounds
 
 ### UI/UX Improvements
+
 - Consistent header design across all dashboard components
 - Improved component sizing and spacing
 - Enhanced component hover effects
@@ -22,6 +41,7 @@ All notable changes to Productiv.ai will be documented in this file.
 - Interactive drag-and-sort toggle button
 
 ### Technical Updates
+
 - Updated React dependencies to latest versions
 - Integrated essential npm packages:
   - date-fns for date handling
@@ -30,7 +50,7 @@ All notable changes to Productiv.ai will be documented in this file.
   - react-icons for UI icons
 - Added ESLint configuration
 
-## [0.1.0] - 2025-05-11
+## [0.1.4] - 2025-05-11
 
 ### Added
 
