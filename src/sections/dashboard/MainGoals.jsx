@@ -2,7 +2,7 @@ import React from "react";
 
 const MainGoals = ({ id, size, onPin }) => {
   return (
-    <div className="main-goals bg-blue-100 p-4 rounded-lg shadow dashboard-card-box">
+    <div className="main-goals bg-blue-100 p-4 rounded-lg shadow dashboard-card-box wb-card-size">
       <div className="header flex justify-between items-center">
         <h3 className="font-bold mb-2 text-blue-800 text-xl font-[Poppins] flex items-center gap-2">
           🎯 Main Goals

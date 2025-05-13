@@ -2,7 +2,7 @@ import React from "react";
 
 const DailyGoals = () => {
   return (
-    <div className="daily-goals bg-green-100 p-4 rounded-lg shadow dashboard-card-box">
+    <div className="daily-goals bg-green-100 p-4 rounded-lg shadow whiteboard-card-box wb-card-size">
       <div className="header flex justify-between items-center">
         <h3 className="font-bold mb-2 text-green-800 text-xl font-[Poppins] flex items-center gap-2">
           📅 Daily Goals

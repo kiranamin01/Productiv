@@ -32,8 +32,12 @@
     width: auto;
   }
 
-  .dashboard-card-box {
+  .whiteboard-card-box {
     @apply resize overflow-auto min-w-[200px] min-h-[200px] max-w-[800px] max-h-[600px];
+  }
+
+  .wb-card-size {
+    @apply w-[440px] h-[540px] px-20 py-10 rounded-lg shadow-xl;
   }
 
   .pd-timer {
