@@ -6,6 +6,7 @@ import {
 } from "@dnd-kit/sortable";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import InputBox from "../../components/whiteboard/InputBox";
 
 // Task component with drag-and-drop functionality
 const Task = ({ id, content, status, onDelete, onEdit, onStatusChange }) => {
@@ -273,7 +274,7 @@ const ToDoList = () => {
       </div>
 
       <div className="mb-4 flex gap-2">
-        <input
+        <InputBox
           type="text"
           value={newTask}
           onChange={(e) => setNewTask(e.target.value)}
@@ -281,11 +282,10 @@ const ToDoList = () => {
             e.key === "Enter" && (editingTask ? updateTask() : addTask())
           }
           placeholder="Add a new task..."
-          className="flex-1 p-2 rounded-lg border border-purple-200 focus:ring-2 focus:ring-purple-400 focus:outline-none shadow-sm"
         />
         <button
           onClick={editingTask ? updateTask : addTask}
-          className="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition-colors shadow-sm hover:shadow flex items-center gap-2"
+          className="bg-purple-600 wb-card-btn"
         >
           {editingTask ? "📝 Update" : "➕ Add"}
         </button>

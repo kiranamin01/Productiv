@@ -40,6 +40,17 @@
     @apply w-[440px] h-[540px] px-20 py-10 rounded-lg shadow-xl;
   }
 
+  .wb-card-btn {
+    @apply text-white px-6 py-2 rounded-lg 
+    hover:bg-purple-700 active:bg-purple-800
+    transition-all duration-200 ease-in-out
+    shadow-sm hover:shadow-md 
+    transform hover:-translate-y-0.5 active:translate-y-0
+    flex items-center gap-2
+    font-medium tracking-wide
+    focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2;
+  }
+
   .pd-timer {
     @apply text-6xl text-center text-white py-3;
   }
