@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, createContext } from "react";
 import { DndContext, closestCenter } from "@dnd-kit/core";
 import { SortableContext, rectSortingStrategy } from "@dnd-kit/sortable";
 import { useSortable } from "@dnd-kit/sortable";
@@ -16,6 +16,9 @@ import MusicPlayer from "../sections/dashboard/MusicPlayer.jsx";
 
 import DB_Day from "../assets/day-db.jpg";
 import DB_Night from "../assets/night-db.jpg";
+
+// Create a context for sharing drag data between components
+export const DragContext = createContext(null);
 
 // Create a wrapper component for sortable items
 const SortableItem = ({ id, children }) => {
@@ -76,124 +79,143 @@ const Dashboard = () => {
     }
   };
 
+  // Add a function to handle cross-component drag events
+  const handleCrossDrag = (sourceComponent, taskData) => {
+    console.log(`Cross-component drag from ${sourceComponent}`, taskData);
+
+    // Here you can implement logic to move tasks between components
+    // For example, if a task is dragged from DailyGoals to ToDoList
+    if (sourceComponent === "dailyGoals" && taskData) {
+      // Find the ToDoList component and add the task there
+      const todoListItem = items.find((item) => item.id === "todoList");
+      if (todoListItem && todoListItem.component) {
+        // You would need to expose an addTask method from ToDoList component
+        todoListItem.component.addTask(taskData);
+      }
+    }
+  };
+
   return (
-    <div className="dashboard-section min-h-screen bg-dotted dark:bg-gray-950 dark:bg-[radial-gradient(#1f2937_1px,transparent_1px)] dark:[background-size:16px_16px]">
-      <div className="p-6 sm:p-8">
-        <DbHello />
-        <DbWelcome />
-        <DndContext
-          collisionDetection={closestCenter}
-          onDragEnd={handleDragEnd}
-        >
-          <div className="whiteboard-panel flex justify-between mb-4 bg-amber-200 w-full rounded-xl my-4 py-2 px-4">
-            <div className="wb-panel-text font-[Poppins]">
-              <h2 className="text-gray-800 font-semibold text-xl flex items-center gap-2">
-                <span role="img" aria-label="whiteboard">
-                  📝
-                </span>
-                WhiteBoard Panel
-                <span role="img" aria-label="sparkles">
-                  ✨
-                </span>
-              </h2>
-            </div>
-            <div className="wb-panel-btn">
-              <button
-                onClick={() => setSortingEnabled(!isSortingEnabled)}
-                className={`sortbtn px-4 py-2 mr-15 ${
-                  isSortingEnabled
-                    ? "bg-red-600/90 hover:bg-red-700"
-                    : "bg-indigo-600/90 hover:bg-indigo-700"
-                } text-white rounded-lg shadow-md transition-colors duration-200 ease-in-out font-medium text-sm flex items-center gap-2`}
-              >
-                <svg
-                  className="w-5 h-5"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
+    <DragContext.Provider value={{ handleCrossDrag }}>
+      <div className="dashboard-section min-h-screen bg-dotted dark:bg-gray-950 dark:bg-[radial-gradient(#1f2937_1px,transparent_1px)] dark:[background-size:16px_16px]">
+        <div className="p-6 sm:p-8">
+          <DbHello />
+          <DbWelcome />
+          <DndContext
+            collisionDetection={closestCenter}
+            onDragEnd={handleDragEnd}
+          >
+            <div className="whiteboard-panel flex justify-between mb-4 bg-amber-200 w-full rounded-xl my-4 py-2 px-4">
+              <div className="wb-panel-text font-[Poppins]">
+                <h2 className="text-gray-800 font-semibold text-xl flex items-center gap-2">
+                  <span role="img" aria-label="whiteboard">
+                    📝
+                  </span>
+                  WhiteBoard Panel
+                  <span role="img" aria-label="sparkles">
+                    ✨
+                  </span>
+                </h2>
+              </div>
+              <div className="wb-panel-btn">
+                <button
+                  onClick={() => setSortingEnabled(!isSortingEnabled)}
+                  className={`sortbtn px-4 py-2 mr-15 ${
+                    isSortingEnabled
+                      ? "bg-red-600/90 hover:bg-red-700"
+                      : "bg-indigo-600/90 hover:bg-indigo-700"
+                  } text-white rounded-lg shadow-md transition-colors duration-200 ease-in-out font-medium text-sm flex items-center gap-2`}
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"
-                  />
-                </svg>
-                {isSortingEnabled ? "Disable Drag/Sort" : "Enable Drag/Sort"}
-              </button>
+                  <svg
+                    className="w-5 h-5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"
+                    />
+                  </svg>
+                  {isSortingEnabled ? "Disable Drag/Sort" : "Enable Drag/Sort"}
+                </button>
+              </div>
             </div>
-          </div>
-          {isSortingEnabled ? (
-            <div className="ds-whiteboard w-full grid sm:grid-cols-2 lg:grid-cols-3 lg:grid-rows-2 xl:grid-cols-4 gap-4 p-4">
-              <SortableContext
-                items={items.map((item) => item.id)}
-                strategy={rectSortingStrategy}
-              >
+
+            {isSortingEnabled ? (
+              <div className="ds-whiteboard w-full grid sm:grid-cols-2 lg:grid-cols-3 lg:grid-rows-2 xl:grid-cols-4 gap-4 p-4">
+                <SortableContext
+                  items={items.map((item) => item.id)}
+                  strategy={rectSortingStrategy}
+                >
+                  {items.map((item) => (
+                    <SortableItem key={item.id} id={item.id}>
+                      <div
+                        className={`component-wrapper transition-all duration-300 ease-in-out bg-transparent ${
+                          item.component.props.size === 2
+                            ? "sm:col-span-2 lg:col-span-2 xl:col-span-2 transform hover:scale-[1.02]"
+                            : "transform hover:scale-[1.01]"
+                        } relative group rounded-lg shadow-lg`}
+                      >
+                        <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity z-10">
+                          <button
+                            onClick={() => {
+                              setItems(
+                                items.map((i) =>
+                                  i.id === item.id
+                                    ? { ...i, size: i.size === 2 ? 1 : 2 }
+                                    : i
+                                )
+                              );
+                            }}
+                            className="righttick p-2 bg-white/20 rounded-full hover:bg-white/30 transition-all duration-300"
+                            title={
+                              item.component.props.size === 2 ? "Unpin" : "Pin"
+                            }
+                          >
+                            <svg
+                              className="w-5 h-5"
+                              viewBox="0 0 24 24"
+                              fill="currentColor"
+                            >
+                              {item.component.props.size === 2 ? (
+                                <path d="M16,12V4H17V2H7V4H8V12L6,14V16H11.2V22H12.8V16H18V14L16,12Z" />
+                              ) : (
+                                <path d="M16,12V4H17V2H7V4H8V12L6,14V16H11.2V22H12.8V16H18V14L16,12M8.8,14L10,12.8V4H14V12.8L15.2,14H8.8Z" />
+                              )}
+                            </svg>
+                          </button>
+                        </div>
+                        {item.component}
+                      </div>
+                    </SortableItem>
+                  ))}
+                </SortableContext>
+              </div>
+            ) : (
+              <div className="ds-whiteboard w-full grid sm:grid-cols-2 lg:grid-cols-3 lg:grid-rows-2 xl:grid-cols-4 gap-4 p-4">
                 {items.map((item) => (
-                  <SortableItem key={item.id} id={item.id}>
+                  <div key={item.id}>
                     <div
                       className={`component-wrapper transition-all duration-300 ease-in-out bg-transparent ${
                         item.component.props.size === 2
                           ? "sm:col-span-2 lg:col-span-2 xl:col-span-2 transform hover:scale-[1.02]"
                           : "transform hover:scale-[1.01]"
-                      } relative group rounded-lg shadow-lg`}
+                      } relative group backdrop-blur-sm rounded-lg shadow-lg`}
                     >
-                      <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity z-10">
-                        <button
-                          onClick={() => {
-                            setItems(
-                              items.map((i) =>
-                                i.id === item.id
-                                  ? { ...i, size: i.size === 2 ? 1 : 2 }
-                                  : i
-                              )
-                            );
-                          }}
-                          className="righttick p-2 bg-white/20 rounded-full hover:bg-white/30 transition-all duration-300"
-                          title={
-                            item.component.props.size === 2 ? "Unpin" : "Pin"
-                          }
-                        >
-                          <svg
-                            className="w-5 h-5"
-                            viewBox="0 0 24 24"
-                            fill="currentColor"
-                          >
-                            {item.component.props.size === 2 ? (
-                              <path d="M16,12V4H17V2H7V4H8V12L6,14V16H11.2V22H12.8V16H18V14L16,12Z" />
-                            ) : (
-                              <path d="M16,12V4H17V2H7V4H8V12L6,14V16H11.2V22H12.8V16H18V14L16,12M8.8,14L10,12.8V4H14V12.8L15.2,14H8.8Z" />
-                            )}
-                          </svg>
-                        </button>
-                      </div>
+                      <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
                       {item.component}
                     </div>
-                  </SortableItem>
-                ))}
-              </SortableContext>
-            </div>
-          ) : (
-            <div className="ds-whiteboard w-full grid sm:grid-cols-2 lg:grid-cols-3 lg:grid-rows-2 xl:grid-cols-4 gap-4 p-4">
-              {items.map((item) => (
-                <div key={item.id}>
-                  <div
-                    className={`component-wrapper transition-all duration-300 ease-in-out bg-transparent ${
-                      item.component.props.size === 2
-                        ? "sm:col-span-2 lg:col-span-2 xl:col-span-2 transform hover:scale-[1.02]"
-                        : "transform hover:scale-[1.01]"
-                    } relative group backdrop-blur-sm rounded-lg shadow-lg`}
-                  >
-                    <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
-                    {item.component}
                   </div>
-                </div>
-              ))}
-            </div>
-          )}
-        </DndContext>
+                ))}
+              </div>
+            )}
+          </DndContext>
+        </div>
       </div>
-    </div>
+    </DragContext.Provider>
   );
 };
 

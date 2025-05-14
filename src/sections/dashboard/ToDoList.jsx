@@ -219,9 +219,12 @@ const ToDoList = () => {
       overId
     );
 
-    // Find the task being dragged
+    // Check if this is a task from within the ToDoList
+    let isInternalTask = false;
     let activeTask = null;
     let originalStatus = null;
+
+    // Try to find the task in our own state first
     for (const statusKey in tasks) {
       const found = tasks[statusKey].find(
         (task) => String(task.id) === activeId
@@ -229,18 +232,45 @@ const ToDoList = () => {
       if (found) {
         activeTask = found;
         originalStatus = statusKey;
+        isInternalTask = true;
         break;
       }
     }
 
-    if (!activeTask) {
-      console.error(
-        "[ToDoList] handleDragEnd: Active task not found in state for id:",
-        activeId
-      );
-      return;
+    // If not found in our state, this might be a task from DailyGoals
+    if (!isInternalTask) {
+      console.log("[ToDoList] External task detected, adding to todo list");
+
+      // Get the content from the active element's textContent
+      // This is a simplified approach - in a real app you might want to use a context or state management
+      const draggedElement = document.querySelector(`[data-id="${activeId}"]`);
+      if (draggedElement) {
+        // Use activeTask.content if available, otherwise try to extract from DOM
+        const content =
+          activeTask?.content ||
+          active.data?.current?.content ||
+          draggedElement.textContent.trim();
+
+        if (content) {
+          // Add the task to the todo list
+          const newTask = {
+            id: `todo-${activeId}`, // Create a new ID to avoid conflicts
+            content: content,
+            status: "todo",
+          };
+
+          setTasks((prev) => ({
+            ...prev,
+            todo: [...prev.todo, newTask],
+          }));
+
+          return; // Exit early as we've handled the external drag
+        }
+      }
+      return; // If we couldn't get the content, just exit
     }
 
+    // Handle internal drag and drop (existing logic)
     // Determine the new status/column
     // 'over.data.current.sortable.containerId' is the ID of the SortableContext if dropped on an item
     // 'over.id' is the ID of the SortableContext if dropped directly on the column
@@ -282,6 +312,7 @@ const ToDoList = () => {
             e.key === "Enter" && (editingTask ? updateTask() : addTask())
           }
           placeholder="Add a new task..."
+          className="flex-1 p-2 rounded-lg border border-purple-200 focus:ring-2 focus:ring-purple-400 focus:border-purple-400 focus:outline-none shadow-sm transition duration-200"
         />
         <button
           onClick={editingTask ? updateTask : addTask}
@@ -315,22 +346,24 @@ const ToDoList = () => {
                 items={statusTasks.map((task) => String(task.id))} // Ensure task IDs are strings
                 strategy={verticalListSortingStrategy}
               >
-                {statusTasks.map((task) => (
-                  <Task
-                    key={String(task.id)} // Ensure key is also string
-                    id={String(task.id)} // Pass id as string
-                    content={task.content}
-                    status={task.status}
-                    onDelete={deleteTask}
-                    onEdit={editTask}
-                    onStatusChange={handleStatusChange}
-                  />
-                ))}
-                {statusTasks.length === 0 && (
-                  <div className="text-center py-4 text-purple-500/50 italic">
-                    No tasks here
-                  </div>
-                )}
+                <ul className="list-disc ml-4">
+                  {statusTasks.map((task) => (
+                    <Task
+                      key={String(task.id)} // Ensure key is also string
+                      id={String(task.id)} // Pass id as string
+                      content={task.content}
+                      status={task.status}
+                      onDelete={deleteTask}
+                      onEdit={editTask}
+                      onStatusChange={handleStatusChange}
+                    />
+                  ))}
+                  {statusTasks.length === 0 && (
+                    <li className="text-center py-4 text-purple-500/50 italic">
+                      No tasks here
+                    </li>
+                  )}
+                </ul>
               </SortableContext>
             </div>
           ))}

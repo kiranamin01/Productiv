@@ -6,7 +6,7 @@ const InputBox = ({
   onKeyDown = () => {},
   placeholder = "Type here...",
   type = "text",
-  className = "flex-1 p-2 rounded-lg border border-purple-200 focus:ring-2 focus:ring-purple-400 focus:outline-none shadow-sm",
+  className = "flex-1 p-2 rounded-lg border border-purple-200 focus:ring-2 focus:ring-purple-400 focus:border-purple-400 focus:outline-none shadow-sm transition duration-200",
 }) => {
   return (
     <input
