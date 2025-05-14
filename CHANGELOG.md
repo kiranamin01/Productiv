@@ -4,6 +4,22 @@ All notable changes to Productiv.ai will be documented in this file.
 
 ## [Unreleased]
 
+## [0.1.7] - 2025-05-14
+
+### Added
+
+- Cross-component drag and drop functionality
+- Ability to drag tasks from Daily Goals to To-Do List
+- List-disc styling for tasks in both components
+- Improved task content extraction during drag operations
+
+### Fixed
+
+- Fixed unused variables in ToDoList component
+- Removed unused imports in DailyGoals component
+- Improved task rendering consistency between components
+- Enhanced drag and drop detection between different components
+
 ## [0.1.6] - 2025-05-13
 
 ### Added
