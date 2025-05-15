@@ -43,20 +43,30 @@ const DraggableTask = ({
 
   // Ensure handleAddSubTask correctly updates state
   const handleAddSubTask = () => {
+    console.log("handleAddSubTask called with value:", newSubTask);
     if (newSubTask.trim()) {
       const newSubTaskItem = {
         id: `${id}-sub-${Date.now()}`,
         content: newSubTask,
         completed: false,
       };
-      // Use functional update to ensure we're working with the latest state
-      setSubTasks((prevSubTasks) => [...prevSubTasks, newSubTaskItem]);
-      setNewSubTask("");
+      console.log("Creating new subtask:", newSubTaskItem);
 
-      // Force the parent to update (optional, as useEffect should handle this)
-      // if (onSubTasksChange) {
-      //   onSubTasksChange(id, [...subTasks, newSubTaskItem]);
-      // }
+      // Use functional update to ensure we're working with the latest state
+      setSubTasks((prevSubTasks) => {
+        const updatedSubTasks = [...prevSubTasks, newSubTaskItem];
+        console.log(
+          "Updated subtasks (local DraggableTask state):",
+          updatedSubTasks
+        );
+        return updatedSubTasks;
+      });
+
+      setNewSubTask(""); // Clear the input field
+    } else {
+      console.log(
+        "handleAddSubTask: newSubTask is empty or only whitespace. Subtask not added."
+      );
     }
   };
 
@@ -86,14 +96,23 @@ const DraggableTask = ({
         <button
           className="more-li hover:bg-green-300/50 rounded-full hover:cursor-pointer transition-colors duration-200 p-1"
           onClick={(e) => {
+            e.preventDefault();
             e.stopPropagation();
-            setShowSubTasks((prev) => !prev);
+            console.log(
+              "Current showSubTasks state (before toggle):",
+              showSubTasks
+            );
+            setShowSubTasks((prevShowSubTasks) => !prevShowSubTasks);
+            // To see the new state, you'd log it in a useEffect dependent on showSubTasks
+            // or know that console.log here will show the state *before* this update.
           }}
+          onPointerDown={(e) => e.stopPropagation()}
         >
           <CiCircleChevDown
             className={`text-3xl transform transition-transform ${
               showSubTasks ? "rotate-180 text-green-600" : "text-green-400"
             }`}
+            // Removed redundant onClick from the icon itself
           />
         </button>
 
@@ -125,9 +144,13 @@ const DraggableTask = ({
         </span>
       </div>
 
-      {showSubTasks ? (
-        <ul className="ml-10 mt-3 space-y-2">
-          {console.log("Rendering subtasks:", subTasks)}
+      <div
+        className={`subtask-section transition-all duration-300 pointer-events-auto ${
+          showSubTasks ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+        }`}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <ul className="subtask-list ml-10 mt-3 space-y-2">
           {subTasks && subTasks.length > 0 ? (
             subTasks.map((subTask) => (
               <li
@@ -163,20 +186,39 @@ const DraggableTask = ({
             <input
               type="text"
               value={newSubTask}
-              onChange={(e) => setNewSubTask(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && handleAddSubTask()}
+              onChange={(e) => {
+                // Stop event propagation
+                e.stopPropagation();
+                // Directly set the value without any processing
+                setNewSubTask(e.target.value);
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  handleAddSubTask();
+                }
+              }}
+              // Prevent any click events from bubbling up
+              onClick={(e) => e.stopPropagation()}
               placeholder="Add a subtask..."
-              className="flex-1 p-1 rounded border border-green-300 focus:outline-none focus:ring-1 focus:ring-green-500"
+              // Add pointer-events-auto to ensure the input receives events
+              className="flex-1 p-1 rounded border border-green-300 focus:outline-none focus:ring-1 focus:ring-green-500 bg-white z-10 pointer-events-auto"
             />
             <button
-              onClick={handleAddSubTask}
-              className="px-2 py-1 bg-green-500 text-white rounded hover:bg-green-600"
+              type="button"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                handleAddSubTask();
+              }}
+              className="px-2 py-1 bg-green-500 text-white rounded hover:bg-green-600 z-10 pointer-events-auto"
             >
               Add
             </button>
           </li>
         </ul>
-      ) : null}
+      </div>
     </li>
   );
 };
