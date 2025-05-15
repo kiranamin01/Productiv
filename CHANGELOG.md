@@ -4,6 +4,23 @@ All notable changes to Productiv.ai will be documented in this file.
 
 ## [Unreleased]
 
+## [0.1.8] - 2025-05-16
+
+### Added
+
+- Subtask functionality for Daily Goals tasks
+- Collapsible subtask interface with chevron toggle
+- Task completion tracking for subtasks
+- Dynamic subtask counter display
+- Interactive subtask management (add, delete, toggle completion)
+
+### UI/UX Improvements
+
+- Animated subtask section expansion/collapse
+- Visual feedback for subtask completion status
+- Smooth transitions for subtask interactions
+- Improved task hierarchy visualization
+
 ## [0.1.7] - 2025-05-14
 
 ### Added
