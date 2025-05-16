@@ -1,9 +1,9 @@
 import React from "react";
 import HomePageHero from "../assets/homepage-hero.png";
 import HeroAppImg from "../assets/app-ss.png";
-import { motion } from "framer-motion";
 import { ArrowRight, ChevronRight, ExternalLink, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 const Hero = () => {

@@ -7,6 +7,10 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @layer components {
+  .dark-mode-btn2 {
+    @apply p-2 rounded-lg border border-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 cursor-pointer;
+  }
+
   .bg-primary {
     @apply bg-blue-400;
   }

@@ -3,6 +3,7 @@ import Logo from "../assets/logosaas.png";
 import MenuIcon from "../assets/menu.svg";
 import { MdDarkMode } from "react-icons/md";
 import { SlLogin } from "react-icons/sl";
+import DarkMode from "@/DarkMode";
 
 const Header = () => {
   return (
@@ -71,12 +72,10 @@ const Header = () => {
             </nav>
 
             <div className="nav-right flex justify-end space-x-4">
-              <button className="p-2 rounded-lg border hover:bg-black hover:text-white transition-all duration-200">
-                <MdDarkMode className="w-6 h-6" />
-              </button>
-              <button className="flex items-center space-x-2 px-4 py-2 border rounded-lg hover:bg-black hover:text-white transition-all duration-200">
-                <SlLogin className="text-lg" />
-                <span>Login</span>
+              <DarkMode />
+              <button className="flex items-center dark-mode-btn2 ">
+                <SlLogin className="text-lg mr-2" />
+                Login
               </button>
             </div>
           </div>

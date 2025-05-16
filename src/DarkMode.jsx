@@ -19,7 +19,10 @@ const DarkMode = () => {
 
   return (
     <>
-      <button onClick={toggleDarkMode} className="dark-mode-btn text-center">
+      <button
+        onClick={toggleDarkMode}
+        className="dark-mode-btn text-center dark-mode-btn2"
+      >
         {isDark ? (
           <FcLandscape className="text-3xl p-1" />
         ) : (
