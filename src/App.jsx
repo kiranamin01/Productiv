@@ -12,7 +12,7 @@ import Dashboard from "../src/pages/dashboard.jsx";
 function App() {
   return (
     <>
-      <Dashboard />
+      {/* <Dashboard /> */}
       <Header />
       <Hero />
       <ProductShowcase />
