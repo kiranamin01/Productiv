@@ -4,7 +4,31 @@ All notable changes to Productiv.ai will be documented in this file.
 
 ## [Unreleased]
 
-## [0.1.8] - 2025-05-16
+## [0.1.9] - 2024-02-16
+
+### Added
+
+- Tech stack showcase with animated logo ticker
+- Comprehensive FAQ section with interactive animations
+- Improved UI components with Framer Motion animations
+- Enhanced dark mode support across components
+
+### UI/UX Improvements
+
+- Smooth logo animations with hover effects
+- Interactive FAQ accordion with smooth transitions
+- Gradient text effects for headings
+- Responsive design improvements
+- Enhanced component styling with Tailwind CSS
+
+### Technical Updates
+
+- Integrated additional tech stack logos
+- Optimized image assets for better performance
+- Enhanced component reusability
+- Improved animation performance
+
+## [0.1.8] - 2025-05-15
 
 ### Added
 
