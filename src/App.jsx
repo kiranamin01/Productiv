@@ -6,6 +6,8 @@ import LogoTicker from "../src/sections/LogoTicker";
 import Pricing from "../src/sections/Pricing";
 import ProductShowcase from "../src/sections/ProductShowcase";
 import Testimonials from "../src/sections/Testimonials";
+import FAQ from "../src/sections/FAQ";
+// import AboutUs from "../src/sections/AboutUs";
 
 import Dashboard from "../src/pages/dashboard.jsx";
 
@@ -15,11 +17,13 @@ function App() {
       {/* <Dashboard /> */}
       <Header />
       <Hero />
-      <ProductShowcase />
-      <Pricing />
       <LogoTicker />
+      <ProductShowcase />
+      {/* <AboutUs /> */}
       <Testimonials />
+      <Pricing />
       <CallToAction />
+      <FAQ />
       <Footer />
     </>
   );

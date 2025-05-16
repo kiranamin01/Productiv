@@ -11,55 +11,55 @@ import avatar9 from "../assets/avatar-9.png";
 
 const testimonials = [
   {
-    text: "Productiv.ai has revolutionized how I manage my daily tasks. The AI-powered features help me stay focused and accomplish more in less time.",
+    text: "Productiv.ai isn't just a to-do list; it's my command center. The AI task generation saves me hours of planning each week, letting me focus on deep work.",
     imageSrc: avatar1,
     name: "Priya Sharma",
     username: "@priyatech",
   },
   {
-    text: "The smart task prioritization and AI suggestions have doubled our team's productivity. This is exactly what we needed!",
+    text: "Our team's output has genuinely doubled since adopting Productiv.ai. The AI-driven prioritization ensures we're always working on what matters most.",
     imageSrc: avatar2,
     name: "Arjun Patel",
     username: "@arjunp_dev",
   },
   {
-    text: "The AI-driven insights help me understand my productivity patterns and optimize my work schedule effectively.",
+    text: "I finally understand where my time goes! The AI insights from Productiv.ai helped me identify bottlenecks and optimize my entire workflow. Game changer!",
     imageSrc: avatar3,
     name: "Neha Verma",
     username: "@nehav_pm",
   },
   {
-    text: "The seamless integration with our existing tools and AI-powered automation has made our workflow incredibly efficient.",
+    text: "The AI automation features are a lifesaver. Repetitive tasks are handled seamlessly, freeing up our team for more strategic initiatives. Integration was a breeze!",
     imageSrc: avatar4,
     name: "Rajesh Kumar",
     username: "@rajeshk",
   },
   {
-    text: "The AI assistant helps me break down complex projects into manageable tasks. It's like having a personal productivity coach!",
+    text: "Breaking down huge projects felt overwhelming until Productiv.ai. The AI assistant is like having a dedicated coach, guiding me through each step.",
     imageSrc: avatar5,
     name: "Ananya Mehta",
     username: "@ananyam_tech",
   },
   {
-    text: "The smart notification system and focus mode features have helped me eliminate distractions and maintain peak productivity.",
+    text: "My focus has improved dramatically thanks to the smart notification system and customizable focus modes. Productiv.ai helps me stay in the zone.",
     imageSrc: avatar6,
     name: "Vikram Singh",
     username: "@vikramsingh",
   },
   {
-    text: "Our startup's efficiency has improved dramatically with Productiv.ai's AI-powered project management and team collaboration features.",
+    text: "As a startup, efficiency is key. Productiv.ai's AI-powered project management and collaboration tools have been instrumental in our rapid growth.",
     imageSrc: avatar7,
     name: "Kavita Reddy",
     username: "@kavita_builds",
   },
   {
-    text: "The AI-powered time tracking and productivity analytics give us valuable insights into our team's performance and areas for improvement.",
+    text: "The productivity analytics are incredibly insightful. We've identified key areas for improvement and seen a tangible boost in team performance.",
     imageSrc: avatar8,
     name: "Arun Gupta",
     username: "@arungtechleads",
   },
   {
-    text: "The intelligent task suggestions and automated workflow features have transformed how I manage my daily responsibilities.",
+    text: "I used to dread planning my week. Now, with Productiv.ai's intelligent suggestions and automated workflows, I feel organized and in control.",
     imageSrc: avatar9,
     name: "Meera Iyer",
     username: "@meeraiyer",
@@ -70,14 +70,14 @@ const Testimonials = () => {
   return (
     <section className="py-20 px-4">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-5xl font-bold text-center mb-12 text-white">
-          What Our Users Say
+        <h2 className="text-5xl font-bold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-black to-indigo-900 dark:from-gray-100 dark:to-gray-500">
+          Loved by Productive People Worldwide
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[280px]">
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className={`bg-gradient-to-br from-blue-800 via-blue-950 to-black/95 backdrop-blur-sm
+              className={`bg-gradient-to-r from-blue-900 to-purple-900 backdrop-blur-sm
                 rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-blue-700/20
                 ${
                   index === 3 || index === 7

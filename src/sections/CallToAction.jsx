@@ -1,5 +1,11 @@
+import CTA from "../components/mvpblocks/cta-1";
+
 const CallToAction = () => {
-  return <div>CallToAction</div>;
+  return (
+    <>
+      <CTA />
+    </>
+  );
 };
 
 export default CallToAction;

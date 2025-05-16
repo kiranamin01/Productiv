@@ -7,7 +7,7 @@ import DarkMode from "@/DarkMode";
 
 const Header = () => {
   return (
-    <header className="sticky top-0 backdrop-blur-sm">
+    <header className="backdrop-blur-sm">
       <div className="flex justify-center items-center py-3 bg-black text-white text-sm gap-3 ">
         <div className="inline-flex gap-1 items-center">
           <p className="text-white/60 hidden md:block px-4">
@@ -66,7 +66,7 @@ const Header = () => {
               >
                 Help
               </a>
-              <button className="bg-black text-white px-6 py-2 rounded-lg font-medium hover:bg-gray-800 transition-colors duration-200">
+              <button className="bg-black text-white px-6 py-2 rounded-lg font-medium hover:bg-orange-600 transition-colors duration-200">
                 Get for Free
               </button>
             </nav>

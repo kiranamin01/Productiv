@@ -94,7 +94,7 @@ const Hero = () => {
               type: "spring",
               stiffness: 50,
             }}
-            className="relative mx-auto mt-16 max-w-4xl"
+            className="relative mx-auto mt-16 max-w-8xl"
           >
             <div className="overflow-hidden rounded-xl border border-border/40 bg-background/50 shadow-xl backdrop-blur-sm">
               <div className="flex h-10 items-center border-b border-border/40 bg-muted/50 px-4">
@@ -103,7 +103,7 @@ const Hero = () => {
                   <div className="h-3 w-3 rounded-full bg-yellow-500"></div>
                   <div className="h-3 w-3 rounded-full bg-green-500"></div>
                 </div>
-                <div className="mx-auto flex items-center rounded-md bg-background/50 px-3 py-1 text-xs text-muted-foreground">
+                <div className="mx-auto flex items-center rounded-md bg-background/50 px-3 py-1 text-xl text-muted-foreground">
                   https://productiv.ai
                 </div>
               </div>
