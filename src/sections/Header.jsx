@@ -7,81 +7,74 @@ import DarkMode from "@/DarkMode";
 
 const Header = () => {
   return (
-    <header className="backdrop-blur-sm">
-      <div className="flex justify-center items-center py-3 bg-black text-white text-sm gap-3 ">
-        <div className="inline-flex gap-1 items-center">
-          <p className="text-white/60 hidden md:block px-4">
-            Get Hands-On Best Productivity App from Us
-          </p>
-          <p className="text-white hidden md:block ">Get started for free </p>
+    <>
+      <header className="backdrop-blur-sm">
+        <div className="flex justify-center items-center py-3 bg-black text-white text-sm gap-3 ">
+          <div className="inline-flex gap-1 items-center">
+            <p className="text-muted-foreground px-4">
+              Get Hands-On Best Productivity App from Us
+            </p>
+            <p className="text-white hidden md:block ">Get started for free </p>
+          </div>
         </div>
-      </div>
-      <div className="nav mt-2">
-        <div className="container mx-auto">
-          <div className="flex items-center justify-between py-4">
-            <div className="flex items-center">
-              <img
-                src={Logo}
-                alt="Saas logo"
-                className="h-12 w-12 object-contain"
-              />
+      </header>
+      <nav>
+        <div className="nav-container flex justify-between lg:justify-around lg:mx-6 items-center m-5">
+          <div className="nav-left flex items-center space-x-4">
+            <img src={Logo} alt="Logo" className="h-12" />
+          </div>
+          <div className="nav-center flex items-center">
+            <div className="darkmodebtn md:hidden mr-4">
+              <DarkMode />
             </div>
-
-            <div className="md:hidden">
-              <img
-                src={MenuIcon}
-                className="h-6 w-6 cursor-pointer"
-                alt="MenuIcon"
-              />
-            </div>
-
-            <nav className="hidden md:flex items-center space-x-8">
+            <button className="menubtn md:hidden">
+              <img src={MenuIcon} alt="Menu" className="h-12 dark:invert" />
+            </button>
+            <div className="navbar hidden md:flex items-center space-x-8 mx-5">
               <a
                 href="#"
-                className="text-gray-600 hover:text-black transition-colors duration-200"
+                className="text-gray-600 hover:text-black dark:hover:text-foreground transition-colors duration-200"
               >
                 About
               </a>
               <a
                 href="#"
-                className="text-gray-600 hover:text-black transition-colors duration-200"
+                className="text-gray-600 hover:text-black dark:hover:text-foreground transition-colors duration-200"
               >
                 Features
               </a>
               <a
                 href="#"
-                className="text-gray-600 hover:text-black transition-colors duration-200"
+                className="text-gray-600 hover:text-black dark:hover:text-foreground transition-colors duration-200"
               >
                 Customers
               </a>
               <a
                 href="#"
-                className="text-gray-600 hover:text-black transition-colors duration-200"
+                className="text-gray-600 hover:text-black dark:hover:text-foreground transition-colors duration-200"
               >
                 Updates
               </a>
               <a
                 href="#"
-                className="text-gray-600 hover:text-black transition-colors duration-200"
+                className="text-gray-600 hover:text-black dark:hover:text-foreground transition-colors duration-200"
               >
                 Help
               </a>
-              <button className="bg-black text-white px-6 py-2 rounded-lg font-medium hover:bg-orange-600 transition-colors duration-200">
-                Get for Free
-              </button>
-            </nav>
-
-            <div className="nav-right flex justify-end space-x-4">
-              <DarkMode />
-              <button className="flex items-center dark-mode-btn2 ">
-                <SlLogin className="text-lg mr-2" />
-                Login
-              </button>
             </div>
           </div>
+          <div className="nav-right hidden md:flex mx-5 gap-4">
+            <div className="darkmodebtn hidden md:block">
+              <DarkMode />
+            </div>
+            <button className="flex items-center dark-mode-btn">
+              <SlLogin className="text-lg mr-1" />
+              Login
+            </button>
+          </div>
         </div>
-      </div>
-    </header>
+      </nav>
+    </>
   );
 };
 

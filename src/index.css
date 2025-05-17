@@ -10,8 +10,9 @@
   .bg-gradient {
     @apply bg-gradient-to-r from-purple-400 to-pink-400;
   }
-  .dark-mode-btn2 {
-    @apply p-2 rounded-lg border border-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 cursor-pointer;
+
+  .dark-mode-btn {
+    @apply justify-center text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 border hover:bg-primary hover:text-accent-foreground h-12 px-8 flex items-center gap-2 border-border bg-background/50 backdrop-blur-sm rounded-full;
   }
 
   .bg-dotted {

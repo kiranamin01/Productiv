@@ -70,15 +70,15 @@ const Testimonials = () => {
   return (
     <section className="py-20 px-4">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-5xl font-bold text-center mb-12 bg-clip-text text-transparent bg-gradient-to-r from-black to-indigo-900 dark:from-gray-100 dark:to-gray-500">
-          Loved by Productive People Worldwide
+        <h2 className="text-4xl font-medium text-center mb-12 -tracking-normal text-gray-900 dark:text-gray-100">
+          ❤️Loved by Productive People Worldwide 🌎
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[280px]">
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className={`bg-gradient-to-r from-blue-900 to-purple-900 backdrop-blur-sm
-                rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-blue-700/20
+              className={`bg-gray-100/30 dark:bg-secondary/20 backdrop-blur-sm
+                rounded-3xl p-8 shadow-sm hover:shadow-md transition-all duration-300 border border-primary/30 dark:border-primary/40
                 ${
                   index === 3 || index === 7
                     ? "md:col-span-2 lg:col-span-1"
@@ -89,7 +89,7 @@ const Testimonials = () => {
               `}
             >
               <div className="flex items-start h-full flex-col justify-between">
-                <p className="text-gray-200 text-xl leading-relaxed mb-4 ">
+                <p className="text-muted-foreground text-lg leading-relaxed mb-4 ">
                   {testimonial.text}
                 </p>
                 <div className="flex items-center gap-4 mt-auto">
@@ -99,10 +99,10 @@ const Testimonials = () => {
                     className="w-12 h-12 rounded-full object-cover ring-2 ring-blue-400/30"
                   />
                   <div>
-                    <h3 className="font-medium text-white text-lg">
+                    <h3 className="font-medium text-black dark:text-white text-lg">
                       {testimonial.name}
                     </h3>
-                    <span className="text-blue-200/80 text-base">
+                    <span className="text-blue-600 text-base">
                       {testimonial.username}
                     </span>
                   </div>

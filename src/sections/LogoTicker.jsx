@@ -104,10 +104,10 @@ const LogoTicker = () => {
 
   return (
     <section className="border border-gray-300 dark:border-gray-200/10 overflow-hidden">
-      <div className="flex flex-col gap-4 my-10 mx-10">
+      <div className="flex flex-col gap-4 my-10 mx-5">
         <div className="text mb-8 text-center">
-          <h1 className="text-3xl font-bold">Our Tech Stack</h1>
-          <p className="text-sm mt-2">
+          <h1 className="text-2xl lg:text-3xl font-bold">Our Tech Stack</h1>
+          <p className="text-xl mt-2">
             We use the latest technologies to build our products.
           </p>
         </div>
@@ -121,7 +121,7 @@ const LogoTicker = () => {
                 alt={logo.alt}
                 width={logo.width}
                 height={logo.height}
-                className="logo-ticker-img w-auto h-18 hover:grayscale-0 transition-all duration-300 bg-orange-300/10 hover:bg-orange-300 rounded-full p-2 mx-6"
+                className="logo-ticker-img w-auto h-18 transition-all duration-300 bg-primary/40 hover:bg-primary/80 rounded-full p-2 mx-6"
               />
             ))}
             {logos.map((logo, index) => (
