@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import HomePageHero from "../assets/homepage-hero.png";
 import HeroAppImg from "../assets/app-ss.png";
 import { ArrowRight, ChevronRight, ExternalLink, Github } from "lucide-react";
@@ -7,6 +8,8 @@ import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 const Hero = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="relative w-full overflow-hidden bg-background">
       {/* Background gradient */}
@@ -65,7 +68,8 @@ const Hero = () => {
           >
             <Button
               size="lg"
-              className="group relative overflow-hidden rounded-full bg-primary px-6 text-primary-foreground shadow-lg transition-all duration-300 hover:shadow-primary/30"
+              className="getstarted group relative overflow-hidden rounded-full bg-primary px-6 text-primary-foreground shadow-lg transition-all duration-300 hover:shadow-primary/30"
+              onClick={() => navigate("/app")}
             >
               <span className="relative z-10 flex items-center">
                 Get Started
