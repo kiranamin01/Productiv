@@ -8,7 +8,7 @@ export default function CTA1() {
           className="relative isolate w-full overflow-hidden rounded-2xl"
           style={{
             background:
-              "linear-gradient(90deg,rgba(30, 58, 138, 1) 0%, rgba(34, 7, 74, 1) 100%)",
+              "linear-gradient(to top right, rgb(255, 102, 60), rgb(7 16 45))",
           }}
         >
           <img

@@ -28,6 +28,7 @@ const testimonials = [
     name: "Neha Verma",
     username: "@nehav_pm",
   },
+
   {
     text: "The AI automation features are a lifesaver. Repetitive tasks are handled seamlessly, freeing up our team for more strategic initiatives. Integration was a breeze!",
     imageSrc: avatar4,
@@ -68,28 +69,28 @@ const testimonials = [
 
 const Testimonials = () => {
   return (
-    <section className="py-20 px-4">
+    <section className="py-20 px-2">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-4xl font-medium text-center mb-12 -tracking-normal text-gray-900 dark:text-gray-100">
           ❤️Loved by Productive People Worldwide 🌎
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[280px]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 auto-rows-[300px]">
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
               className={`bg-gray-100/30 dark:bg-secondary/20 backdrop-blur-sm
                 rounded-3xl p-8 shadow-sm hover:shadow-md transition-all duration-300 border border-primary/30 dark:border-primary/40
+                ${index === 2 ? "md:col-span-2 lg:col-span-2" : ""}
                 ${
-                  index === 3 || index === 7
-                    ? "md:col-span-2 lg:col-span-1"
-                    : ""
+                  index === 3 ? "md:col-span-2 lg:col-span-1 lg:row-span-2" : ""
                 }
-                ${index === 4 ? "md:row-span-2 md:col-span-1" : ""}
+                ${index === 5 ? "md:col-span-1 lg:row-span-2" : ""}
+                
                 hover:scale-[1.02]
               `}
             >
               <div className="flex items-start h-full flex-col justify-between">
-                <p className="text-muted-foreground text-lg leading-relaxed mb-4 ">
+                <p className="text-muted-foreground text-lg leading-relaxed mb-4">
                   {testimonial.text}
                 </p>
                 <div className="flex items-center gap-4 mt-auto">
@@ -98,7 +99,7 @@ const Testimonials = () => {
                     alt={testimonial.name}
                     className="w-12 h-12 rounded-full object-cover ring-2 ring-blue-400/30"
                   />
-                  <div>
+                  <div className="">
                     <h3 className="font-medium text-black dark:text-white text-lg">
                       {testimonial.name}
                     </h3>
