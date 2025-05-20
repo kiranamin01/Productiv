@@ -20,13 +20,13 @@ const DbWelcome = () => {
       <h2 className="text-gray-600 font-bold ml-4 text-2xl font-['Montserrat'] flex items-center gap-2">
         <span className="animate-bounce">✨</span>
         Welcome to Dashboard
-        <span className="animate-pulse text-3xl">🎯</span>
+        <span className="animate-pulse text-3xl mr-5">🎯</span>
       </h2>
       <div
-        className="ds-text flex justify-between p-6 rounded-xl shadow-lg backdrop-blur-sm bg-white/30 
+        className="ds-text flex flex-col md:flex-row justify-between items-center gap-5 text-center p-6 rounded-xl shadow-lg backdrop-blur-sm bg-white/30 
         bg-[url('/day-db.jpg')] dark:bg-[url('/night2-db.jpg')] bg-center bg-cover mt-2"
       >
-        <div className="ds-text-left space-y-4 backdrop-blur-md bg-white/40 p-6 rounded-lg border border-white/20 hover:bg-white/50 transition-all duration-300">
+        <div className="ds-text-left w-70 space-y-4 backdrop-blur-md bg-white/40 p-6 rounded-lg border border-white/20 hover:bg-white/50 transition-all duration-300">
           <div className="date-section">
             <p className="text-2xl font-[Poppins] font-semibold text-gray-800 bg-white/30 p-3 rounded-lg">
               {formattedDate.split(" ")[0]} {formattedDate.split(" ")[1]}{" "}
@@ -34,15 +34,15 @@ const DbWelcome = () => {
             </p>
             <div className="text-4xl font-[Orbitron] font-bold text-center flex items-center justify-center gap-2 text-gray-700 mt-2 rounded-lg">
               <span>{formattedDate.split(" ")[3].split(":")[0]}</span>
-              <span className="text-gray-400 animate-pulse">:</span>
+              <span className="text-gray-200 animate-pulse">:</span>
               <span>{formattedDate.split(" ")[3].split(":")[1]}</span>
-              <span className="text-gray-400 animate-pulse">:</span>
+              <span className="text-gray-200 animate-pulse">:</span>
               <span>{formattedDate.split(" ")[3].split(":")[2]}</span>
             </div>
           </div>
 
           <div className="location-section mt-4 border-t border-gray-200/30 pt-4">
-            <div className="flex items-center gap-3 bg-white/30 p-3 rounded-lg">
+            <div className="flex justify-center items-center gap-3 bg-white/30 p-3 rounded-lg">
               <svg
                 className="w-6 h-6 text-blue-500"
                 fill="none"
@@ -69,7 +69,7 @@ const DbWelcome = () => {
           </div>
         </div>
 
-        <div className="ds-text-right flex items-center backdrop-blur-md bg-white/40 p-4 rounded-lg">
+        <div className="ds-text-right w-70 flex justify-center items-center backdrop-blur-md bg-white/40 p-4 rounded-lg">
           <div className="text-3xl font-bold text-gray-800 flex items-center gap-3">
             {typeof window !== "undefined" && <WeatherApi />}
           </div>

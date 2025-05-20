@@ -21,12 +21,12 @@ const DarkMode = () => {
     <>
       <button
         onClick={toggleDarkMode}
-        className="text-center dark-mode-btn px-3 py-2 rounded-full"
+        className="text-center dark-mode-btn p-2 rounded-full w-10 h-10 flex items-center justify-center"
       >
         {isDark ? (
-          <FcLandscape className="text-2xl" />
+          <FcLandscape className="text-lg" />
         ) : (
-          <FcNightLandscape className="text-2xl" />
+          <FcNightLandscape className="text-lg" />
         )}
       </button>
     </>

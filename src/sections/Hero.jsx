@@ -82,6 +82,12 @@ const Hero = () => {
               variant="outline"
               size="lg"
               className="flex items-center gap-2 rounded-full border-border bg-background/50 backdrop-blur-sm"
+              onClick={() =>
+                window.open(
+                  "https://github.com/kiranamin01/Productiv",
+                  "_blank"
+                )
+              }
             >
               <Github className="h-4 w-4" />
               Star on GitHub

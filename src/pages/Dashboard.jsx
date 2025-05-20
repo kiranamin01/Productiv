@@ -81,7 +81,7 @@ const Dashboard = () => {
 
   // Add a function to handle cross-component drag events
   const handleCrossDrag = (sourceComponent, taskData) => {
-    console.log(`Cross-component drag from ${sourceComponent}`, taskData);
+    // console.log(`Cross-component drag from ${sourceComponent}`, taskData);
 
     // Here you can implement logic to move tasks between components
     // For example, if a task is dragged from DailyGoals to ToDoList
@@ -106,8 +106,8 @@ const Dashboard = () => {
             onDragEnd={handleDragEnd}
           >
             <div className="whiteboard-panel flex justify-between mb-4 bg-amber-200 w-full rounded-xl my-4 py-2 px-4">
-              <div className="wb-panel-text font-[Poppins]">
-                <h2 className="text-gray-800 font-semibold text-xl flex items-center gap-2">
+              <div className="wb-panel-text font-[Poppins] flex justify-center">
+                <h2 className="text-gray-800 font-semibold text-lg lg:text-xl flex items-center gap-2">
                   <span role="img" aria-label="whiteboard">
                     📝
                   </span>
@@ -120,11 +120,11 @@ const Dashboard = () => {
               <div className="wb-panel-btn">
                 <button
                   onClick={() => setSortingEnabled(!isSortingEnabled)}
-                  className={`sortbtn px-4 py-2 mr-15 ${
+                  className={`sortbtn px-4 py-2 lg:mr-15 ${
                     isSortingEnabled
                       ? "bg-red-600/90 hover:bg-red-700"
                       : "bg-indigo-600/90 hover:bg-indigo-700"
-                  } text-white rounded-lg shadow-md transition-colors duration-200 ease-in-out font-medium text-sm flex items-center gap-2`}
+                  } text-[12px] text-white rounded-lg shadow-md transition-colors duration-200 ease-in-out font-medium flex items-center gap-2`}
                 >
                   <svg
                     className="w-5 h-5"
