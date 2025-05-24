@@ -2,7 +2,7 @@ import { Globe, Mail, Phone } from "lucide-react";
 
 export default function CTA1() {
   return (
-    <div className="w-full">
+    <section id="help" className="w-full">
       <section className="mx-auto max-w-7xl px-4 py-6 lg:px-8 lg:py-20">
         <div
           className="relative isolate w-full overflow-hidden rounded-2xl"
@@ -59,6 +59,6 @@ export default function CTA1() {
           </div>
         </div>
       </section>
-    </div>
+    </section>
   );
 }

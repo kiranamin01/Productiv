@@ -10,23 +10,28 @@ import FAQ from "../src/sections/FAQ";
 import Dashboard from "../src/pages/dashboard.jsx";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+// Create a Home component that combines all landing page sections
+const Home = () => {
+  return (
+    <>
+      <Header />
+      <Hero />
+      <LogoTicker />
+      <ProductShowcase />
+      <Testimonials />
+      <Pricing />
+      <CallToAction />
+      <FAQ />
+      <Footer />
+    </>
+  );
+};
+
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={
-          <>
-            <Header />
-            <Hero />
-            <LogoTicker />
-            <ProductShowcase />
-            <Testimonials />
-            <Pricing />
-            <CallToAction />
-            <FAQ />
-            <Footer />
-          </>
-        } />
+        <Route path="/" element={<Home />} />
         <Route path="/app" element={<Dashboard />} />
       </Routes>
     </Router>

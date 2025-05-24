@@ -1,5 +1,5 @@
 import React from "react";
-import Feather from "@/components/mvpblocks/feature-1";
+import Features from "@/components/mvpblocks/feature-1";
 
 const ProductShowcase = () => {
   return (
@@ -20,7 +20,7 @@ const ProductShowcase = () => {
         </div>
       </section>
       <section>
-        <Feather />
+        <Features />
       </section>
     </>
   );

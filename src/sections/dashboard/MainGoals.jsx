@@ -22,7 +22,7 @@ const MainGoals = ({ id, size, onPin }) => {
         </button>
       </div>
       <textarea
-        className="w-full p-2 rounded border border-blue-200 focus:ring12Vfocus:ring-blue-400 focus:outline-none font-[Poppins] text-lg"
+        className="w-full p-2 rounded border border-blue-200 focus:ring12 focus:ring-blue-400 focus:outline-none font-[Poppins] text-lg text-background placeholder:text-gray-400"
         placeholder="Enter your main goals..."
         rows="4"
         style={{ resize: "none" }}

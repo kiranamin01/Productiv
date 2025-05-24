@@ -9,7 +9,7 @@ const Planner = () => {
         </h3>
       </div>
       <textarea
-        className="w-full p-2 rounded border border-pink-200 focus:ring-2 focus:ring-pink-400 focus:outline-none font-[Poppins] text-lg"
+        className="w-full p-2 rounded border border-pink-200 focus:ring-2 focus:ring-pink-400 focus:outline-none font-[Poppins] text-lg text-background placeholder:text-gray-400"
         placeholder="Plan your schedule..."
         rows="4"
       />

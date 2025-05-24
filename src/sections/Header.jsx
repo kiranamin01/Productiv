@@ -4,8 +4,22 @@ import MenuIcon from "../assets/menu.svg";
 import { MdDarkMode } from "react-icons/md";
 import { SlLogin } from "react-icons/sl";
 import DarkMode from "@/DarkMode";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate();
+  const handlelogin = () => {
+    navigate("/app");
+  };
+
+  const scrollToSection = (e, sectionId) => {
+    e.preventDefault();
+    const section = document.querySelector(`#${sectionId}`);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <>
       <header className="backdrop-blur-sm">
@@ -32,31 +46,36 @@ const Header = () => {
             </button>
             <div className="navbar hidden md:flex items-center space-x-8 mx-5">
               <a
-                href="#"
+                href="#about"
+                onClick={(e) => scrollToSection(e, "about")}
                 className="text-gray-600 hover:text-black dark:hover:text-foreground transition-colors duration-200"
               >
                 About
               </a>
               <a
-                href="#"
+                href="#features"
+                onClick={(e) => scrollToSection(e, "features")}
                 className="text-gray-600 hover:text-black dark:hover:text-foreground transition-colors duration-200"
               >
                 Features
               </a>
               <a
-                href="#"
+                href="#testimonials"
+                onClick={(e) => scrollToSection(e, "testimonials")}
                 className="text-gray-600 hover:text-black dark:hover:text-foreground transition-colors duration-200"
               >
                 Customers
               </a>
               <a
-                href="#"
+                href="#updates"
+                onClick={(e) => scrollToSection(e, "updates")}
                 className="text-gray-600 hover:text-black dark:hover:text-foreground transition-colors duration-200"
               >
                 Updates
               </a>
               <a
-                href="#"
+                href="#help"
+                onClick={(e) => scrollToSection(e, "help")}
                 className="text-gray-600 hover:text-black dark:hover:text-foreground transition-colors duration-200"
               >
                 Help
@@ -67,7 +86,10 @@ const Header = () => {
             <div className="darkmodebtn hidden md:block">
               <DarkMode />
             </div>
-            <button className="flex items-center dark-mode-btn">
+            <button
+              onClick={handlelogin}
+              className="loginbtn flex items-center dark-mode-btn hover:text-white hover:gap-0.5"
+            >
               <SlLogin className="text-lg mr-1" />
               Login
             </button>

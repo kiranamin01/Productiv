@@ -105,7 +105,7 @@ const Motivation = () => {
         <textarea
           value={personalMotivation}
           onChange={(e) => setPersonalMotivation(e.target.value)}
-          className="w-full p-2 rounded border border-yellow-200 focus:ring-2 focus:ring-yellow-400 focus:outline-none font-[Poppins] text-lg bg-gradient-to-b from-yellow-50 to-yellow-50 bg-stripes"
+          className="w-full p-2 rounded border border-yellow-200 focus:ring-2 focus:ring-yellow-400 focus:outline-none font-[Poppins] text-lg bg-gradient-to-b from-yellow-50 to-yellow-50 placeholder-gray-400 text-background"
           placeholder="Write your motivation for a Day..."
           rows="4"
         />

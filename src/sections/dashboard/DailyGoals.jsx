@@ -338,7 +338,7 @@ const DailyGoals = () => {
       <div className="border-t-2 border-green-600/30 mt-3"></div>
       <div className="input-box flex my-5">
         <InputBox
-          className="flex-1 p-2 rounded-lg border border-green-200 focus:ring-2 focus:ring-green-400 focus:border-green-400 focus:outline-none shadow-sm transition duration-200 font-[Poppins] mr-2"
+          className="flex-1 p-2 rounded-lg text-background border border-green-200 focus:ring-2 focus:ring-green-400 focus:border-green-400 focus:outline-none shadow-sm transition duration-200 font-[Poppins] mr-2 placeholder:text-gray-400"
           placeholder="Enter your daily goals..."
           value={newTask}
           onChange={(e) => setNewTask(e.target.value)}

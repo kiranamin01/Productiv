@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import TailwindLogo from "../assets/logos/tailwindcss.png";
 import ReactLogo from "../assets/logos/react.png";
 import ShadcnLogo from "../assets/logos/shadcn.jpg";
@@ -101,6 +101,7 @@ const LogoTicker = () => {
       height: 150,
     },
   ];
+  const [isPaused, setIsPaused] = useState(false);
 
   return (
     <section className="border border-gray-300 dark:border-gray-200/10 overflow-hidden">
@@ -108,12 +109,17 @@ const LogoTicker = () => {
         <div className="text mb-8 text-center">
           <h1 className="text-2xl lg:text-3xl font-bold">Our Tech Stack</h1>
           <p className="text-xl mt-2">
-            We use the latest technologies to build our products.
+            Powered by cutting-edge technologies to deliver exceptional
+            performance
           </p>
         </div>
 
         <div className="relative flex overflow-x-hidden group">
-          <div className="py-6 animate-scroll flex whitespace-nowrap">
+          <div
+            className={`py-6 ${
+              !isPaused ? "animate-scroll" : ""
+            } flex whitespace-nowrap`}
+          >
             {logos.map((logo, index) => (
               <img
                 key={`logo-1-${index}`}
@@ -121,7 +127,9 @@ const LogoTicker = () => {
                 alt={logo.alt}
                 width={logo.width}
                 height={logo.height}
-                className="logo-ticker-img w-auto h-18 transition-all duration-300 bg-primary/40 hover:bg-primary/80 rounded-full p-2 mx-6"
+                className="logo-ticker-img w-auto h-18 transition-all duration-300 bg-primary/50 hover:bg-primary/90 rounded-full p-2 mx-6 hover:cursor-pointer"
+                onMouseEnter={() => setIsPaused(true)}
+                onMouseLeave={() => setIsPaused(false)}
               />
             ))}
             {logos.map((logo, index) => (
@@ -131,7 +139,9 @@ const LogoTicker = () => {
                 alt={logo.alt}
                 width={logo.width}
                 height={logo.height}
-                className="logo-ticker-img w-auto h-18 hover:grayscale-0 transition-all duration-300 bg-orange-300/10 hover:bg-orange-300 rounded-full p-2 mx-6"
+                className="logo-ticker-img w-auto h-18 hover:grayscale-0 transition-all duration-300 bg-primary/50 hover:bg-primary/90 rounded-full p-2 mx-6 hover:cursor-pointer"
+                onMouseEnter={() => setIsPaused(true)}
+                onMouseLeave={() => setIsPaused(false)}
               />
             ))}
           </div>

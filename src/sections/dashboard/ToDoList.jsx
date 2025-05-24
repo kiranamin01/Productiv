@@ -41,7 +41,7 @@ const Task = ({ id, content, status, onDelete, onEdit, onStatusChange }) => {
             value={status}
             onChange={(e) => onStatusChange(id, e.target.value)}
             onPointerDown={(e) => e.stopPropagation()} // Prevent drag from starting on select interaction
-            className="text-sm bg-white/50 border border-gray-200 rounded px-2 py-1 hover:bg-white transition-colors"
+            className="text-sm bg-white/50 dark:bg-gray-500/80 border border-gray-200 rounded px-2 py-1 hover:bg-white  dark:hover:bg-gray-500/80 transition-colors"
           >
             <option value="todo">📋 To Do</option>
             <option value="inProgress">🔄 In Progress</option>
@@ -49,10 +49,9 @@ const Task = ({ id, content, status, onDelete, onEdit, onStatusChange }) => {
           </select>
           <button
             onClick={() => {
-              console.log(`[Task] Edit button clicked for ID: ${id}`);
               onEdit(id);
             }}
-            onPointerDown={(e) => e.stopPropagation()} // Prevent drag from starting on button click
+            onPointerDown={(e) => e.stopPropagation()}
             className="text-blue-500 hover:text-blue-700 p-1 rounded-full hover:bg-blue-100 transition-colors"
             title="Edit"
             type="button"
@@ -61,10 +60,9 @@ const Task = ({ id, content, status, onDelete, onEdit, onStatusChange }) => {
           </button>
           <button
             onClick={() => {
-              console.log(`[Task] Delete button clicked for ID: ${id}`);
               onDelete(id);
             }}
-            onPointerDown={(e) => e.stopPropagation()} // Prevent drag from starting on button click
+            onPointerDown={(e) => e.stopPropagation()}
             className="text-red-500 hover:text-red-700 p-1 rounded-full hover:bg-red-100 transition-colors"
             title="Delete"
             type="button"
@@ -98,12 +96,11 @@ const ToDoList = () => {
   };
 
   const deleteTask = (taskId) => {
-    console.log("[ToDoList] deleteTask called with taskId:", taskId);
     setTasks((prev) => {
       const newTasks = { ...prev };
       Object.keys(newTasks).forEach((statusKey) => {
         newTasks[statusKey] = newTasks[statusKey].filter(
-          (task) => String(task.id) !== String(taskId) // Compare as strings
+          (task) => String(task.id) !== String(taskId)
         );
       });
       return newTasks;
@@ -111,12 +108,10 @@ const ToDoList = () => {
   };
 
   const editTask = (taskId) => {
-    console.log("[ToDoList] editTask called with taskId:", taskId);
     let taskToEdit = null;
-    // Find the task across all statuses
     for (const statusKey in tasks) {
       const foundTask = tasks[statusKey].find(
-        (task) => String(task.id) === String(taskId) // Compare as strings
+        (task) => String(task.id) === String(taskId)
       );
       if (foundTask) {
         taskToEdit = foundTask;
@@ -125,31 +120,21 @@ const ToDoList = () => {
     }
 
     if (taskToEdit) {
-      console.log("[ToDoList] editTask - task found:", taskToEdit);
-      setEditingTask(taskToEdit); // Set the entire task object
+      setEditingTask(taskToEdit);
       setNewTask(taskToEdit.content);
-    } else {
-      console.warn("[ToDoList] editTask - task NOT found with taskId:", taskId);
     }
   };
 
   const updateTask = () => {
     if (editingTask && newTask.trim()) {
-      console.log(
-        "[ToDoList] updateTask called for task:",
-        editingTask.id,
-        "New content:",
-        newTask
-      );
       setTasks((prev) => {
         const newTasks = { ...prev };
-        // The task being edited retains its original status unless explicitly changed by handleStatusChange
         const originalStatus = editingTask.status;
 
         Object.keys(newTasks).forEach((statusKey) => {
           newTasks[statusKey] = newTasks[statusKey].map((task) =>
-            String(task.id) === String(editingTask.id) // Compare as strings
-              ? { ...task, content: newTask, status: originalStatus } // Update content, keep original status
+            String(task.id) === String(editingTask.id)
+              ? { ...task, content: newTask, status: originalStatus }
               : task
           );
         });
@@ -161,39 +146,24 @@ const ToDoList = () => {
   };
 
   const handleStatusChange = (taskId, newStatus) => {
-    console.log(
-      `[ToDoList] handleStatusChange called for taskId: ${taskId}, newStatus: ${newStatus}`
-    );
     setTasks((prev) => {
       const newTasks = { ...prev };
       let taskToMove;
-      let originalStatusOfTask;
 
-      // Find and remove the task from its current status
       Object.keys(newTasks).forEach((currentStatusKey) => {
         const taskIndex = newTasks[currentStatusKey].findIndex(
-          (task) => String(task.id) === String(taskId) // Compare as strings
+          (task) => String(task.id) === String(taskId)
         );
         if (taskIndex !== -1) {
-          originalStatusOfTask = currentStatusKey;
           [taskToMove] = newTasks[currentStatusKey].splice(taskIndex, 1);
         }
       });
 
       if (taskToMove) {
-        console.log(
-          `[ToDoList] Moving task:`,
-          taskToMove,
-          `from status: ${originalStatusOfTask} to status: ${newStatus}`
-        );
         if (!newTasks[newStatus]) {
-          newTasks[newStatus] = []; // Ensure the target status array exists
+          newTasks[newStatus] = [];
         }
         newTasks[newStatus].push({ ...taskToMove, status: newStatus });
-      } else {
-        console.warn(
-          `[ToDoList] handleStatusChange: Task with id ${taskId} not found to move.`
-        );
       }
       return newTasks;
     });
@@ -202,29 +172,15 @@ const ToDoList = () => {
   const handleDragEnd = (event) => {
     const { active, over } = event;
 
-    if (!over) {
-      console.log(
-        "[ToDoList] handleDragEnd: No 'over' target. Drag cancelled."
-      );
-      return;
-    }
+    if (!over) return;
 
     const activeId = String(active.id);
-    const overId = String(over.id); // Can be a task ID or a column ID (statusKey)
+    const overId = String(over.id);
 
-    console.log(
-      "[ToDoList] handleDragEnd: activeId:",
-      activeId,
-      "overId:",
-      overId
-    );
-
-    // Check if this is a task from within the ToDoList
     let isInternalTask = false;
     let activeTask = null;
     let originalStatus = null;
 
-    // Try to find the task in our own state first
     for (const statusKey in tasks) {
       const found = tasks[statusKey].find(
         (task) => String(task.id) === activeId
@@ -237,24 +193,17 @@ const ToDoList = () => {
       }
     }
 
-    // If not found in our state, this might be a task from DailyGoals
     if (!isInternalTask) {
-      console.log("[ToDoList] External task detected, adding to todo list");
-
-      // Get the content from the active element's textContent
-      // This is a simplified approach - in a real app you might want to use a context or state management
       const draggedElement = document.querySelector(`[data-id="${activeId}"]`);
       if (draggedElement) {
-        // Use activeTask.content if available, otherwise try to extract from DOM
         const content =
           activeTask?.content ||
           active.data?.current?.content ||
           draggedElement.textContent.trim();
 
         if (content) {
-          // Add the task to the todo list
           const newTask = {
-            id: `todo-${activeId}`, // Create a new ID to avoid conflicts
+            id: `todo-${activeId}`,
             content: content,
             status: "todo",
           };
@@ -264,34 +213,18 @@ const ToDoList = () => {
             todo: [...prev.todo, newTask],
           }));
 
-          return; // Exit early as we've handled the external drag
+          return;
         }
       }
-      return; // If we couldn't get the content, just exit
+      return;
     }
 
-    // Handle internal drag and drop (existing logic)
-    // Determine the new status/column
-    // 'over.data.current.sortable.containerId' is the ID of the SortableContext if dropped on an item
-    // 'over.id' is the ID of the SortableContext if dropped directly on the column
     const newStatus =
       over.data.current?.sortable?.containerId ||
       (Object.prototype.hasOwnProperty.call(tasks, overId) ? overId : null);
 
     if (newStatus && newStatus !== originalStatus) {
-      console.log(
-        `[ToDoList] handleDragEnd: Calling handleStatusChange for task ${activeId} from ${originalStatus} to ${newStatus}`
-      );
       handleStatusChange(activeId, newStatus);
-    } else if (newStatus && newStatus === originalStatus) {
-      console.log(
-        `[ToDoList] handleDragEnd: Task ${activeId} dropped in the same column ${newStatus}. No status change.`
-      );
-      // Implement reordering logic here if needed
-    } else {
-      console.log(
-        `[ToDoList] handleDragEnd: Could not determine valid new status or no status change needed. Original: ${originalStatus}, Target container/item: ${overId}`
-      );
     }
   };
 
@@ -312,7 +245,7 @@ const ToDoList = () => {
             e.key === "Enter" && (editingTask ? updateTask() : addTask())
           }
           placeholder="Add a new task..."
-          className="flex-1 p-2 rounded-lg border border-purple-200 focus:ring-2 focus:ring-purple-400 focus:border-purple-400 focus:outline-none shadow-sm transition duration-200"
+          className="flex-1 p-2 rounded-lg border border-purple-200 focus:ring-2 focus:ring-purple-400 focus:border-purple-400 focus:outline-none shadow-sm transition duration-200  text-gray-900 placeholder:text-gray-400 "
         />
         <button
           onClick={editingTask ? updateTask : addTask}
