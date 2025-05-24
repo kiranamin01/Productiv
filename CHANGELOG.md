@@ -2,7 +2,7 @@
 
 All notable changes to Productiv.ai will be documented in this file.
 
-## [Alpha Stage] - 2025-05-25
+## [Alpha Stage] - 2025-05-25 - deployment
 
 ## [0.2.0] - 2025-05-25
 
