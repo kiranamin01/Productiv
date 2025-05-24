@@ -2,9 +2,27 @@
 
 All notable changes to Productiv.ai will be documented in this file.
 
-## [Unreleased]
+## [Alpha Stage] - 2025-05-25
 
-## [0.1.9] - 2024-02-16
+## [0.2.0] - 2025-05-25
+
+### Added
+
+- Separate components for Dashboard and Whiteboard
+- Fixed issue with subtask deletion in DailyGoals component
+- Enhanced button responsiveness in DailyGoals component
+- Improved text centering and width control for small screens
+- Optimized component layout for better mobile experience
+
+### UI/UX Improvements
+
+- Responsive design for all devices
+- Revamped Homepage layout with responsive design used Shadcn UI
+- Added responsive width classes for better mobile display
+- Implemented flexbox centering for button content
+- Enhanced button text alignment across all screen sizes
+
+## [0.1.9] - 2024-05-16
 
 ### Added
 
