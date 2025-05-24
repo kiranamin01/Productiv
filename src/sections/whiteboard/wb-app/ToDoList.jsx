@@ -6,7 +6,7 @@ import {
 } from "@dnd-kit/sortable";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import InputBox from "../../components/whiteboard/InputBox";
+import InputBox from "../../../components/whiteboard/InputBox";
 
 // Task component with drag-and-drop functionality
 const Task = ({ id, content, status, onDelete, onEdit, onStatusChange }) => {

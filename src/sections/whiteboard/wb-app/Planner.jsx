@@ -2,7 +2,7 @@ import React from "react";
 
 const Planner = () => {
   return (
-    <div className="planner bg-pink-100 p-4 rounded-lg shadow dashboard-card-box">
+    <div className="planner bg-pink-100 p-4 rounded-lg shadow dashboard-card-box min-h-[26rem]">
       <div className="header flex justify-between items-center">
         <h3 className="font-bold mb-2 text-pink-800 text-xl font-[Poppins] flex items-center gap-2">
           📝 Planner

@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from "react";
-import InputBox from "../../components/whiteboard/InputBox";
+import InputBox from "../../../components/whiteboard/InputBox";
 import { CiCircleChevDown } from "react-icons/ci";
 
 const Task = ({
@@ -272,17 +272,17 @@ const DailyGoals = () => {
   }, []);
 
   return (
-    <div className="daily-goals bg-green-100 p-4 rounded-lg shadow whiteboard-card-box wb-card-size">
+    <div className="daily-goals bg-green-100 p-2 sm:p-3 md:p-4 rounded-lg shadow min-h-[28rem] max-h-[calc(100vh-2rem)] overflow-auto">
       <div className="header flex justify-between items-center">
-        <h3 className="font-bold mb-2 text-green-800 text-xl font-[Poppins] flex items-center gap-2">
+        <h3 className="font-bold mb-2 text-green-800 text-lg sm:text-xl font-[Poppins] flex items-center gap-1 sm:gap-2">
           📅 Daily Goals
         </h3>
       </div>
-      <div className="goals-list rounded py-2 px-3 shadow-md shadow-gray-300 relative z-0">
-        <h4 className="font-bold mb-2 text-green-800 font-[Poppins]">
+      <div className="goals-list rounded py-1 sm:py-2 px-2 sm:px-3 shadow-md shadow-gray-300 relative z-0 overflow-y-auto max-h-[calc(100vh-12rem)]">
+        <h4 className="font-bold mb-1 sm:mb-2 text-green-800 font-[Poppins] text-base sm:text-lg">
           Today's Tasks
         </h4>
-        <ul className="list-disc ml-4">
+        <ul className="list-disc ml-2 sm:ml-4 space-y-2">
           {tasks.map((task) => (
             <Task
               key={task.id}
@@ -296,10 +296,10 @@ const DailyGoals = () => {
           ))}
         </ul>
       </div>
-      <div className="border-t-2 border-green-600/30 mt-3"></div>
-      <div className="input-box flex my-5 relative z-10">
+      <div className="border-t-2 border-green-600/30 mt-2 sm:mt-3"></div>
+      <div className="input-box flex flex-col sm:flex-row gap-2 sm:gap-0 my-3 sm:my-5 relative z-10">
         <InputBox
-          className="flex-1 p-2 rounded-lg border border-green-200 focus:ring-2 focus:ring-green-400 focus:border-green-400 focus:outline-none shadow-sm transition duration-200 font-[Poppins] mr-2 bg-green-100"
+          className="flex-1 p-1.5 sm:p-2 rounded-lg border border-green-200 focus:ring-2 focus:ring-green-400 focus:border-green-400 focus:outline-none shadow-sm transition duration-200 font-[Poppins] sm:mr-2 bg-green-100 text-sm sm:text-base text-black/80 placeholder:text-gray-400"
           placeholder={
             editingTask ? "Edit task..." : "Enter your daily goals..."
           }
@@ -313,7 +313,7 @@ const DailyGoals = () => {
           }}
         />
         <button
-          className="bg-green-600 wb-card-btn relative z-10"
+          className="bg-green-600 wb-card-btn relative z-10 text-center w-full sm:w-auto text-sm sm:text-base px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg text-white hover:bg-green-700 transition-colors duration-200 flex items-center justify-center"
           onClick={() => (editingTask ? updateTask() : addTask())}
         >
           {editingTask ? "📝 Update" : "Add"}

@@ -65,9 +65,9 @@ const Pomodoro = () => {
           ⏲️ Pomodoro Timer
         </h3>
       </div>
-      <div className="pt-box bg-gray-500 p-3 rounded my-8">
-        <div className="pt-box-clock bg-black/70 rounded">
-          <h4 className="pd-timer font-[Orbitron]">
+      <div className="pt-box bg-gray-500 p-2 sm:p-3 rounded my-4 sm:my-8">
+        <div className="pt-box-clock bg-black/70 rounded p-2 sm:p-4">
+          <h4 className="pd-timer font-[Orbitron] text-4xl sm:text-3xl md:text-4xl lg:text-5xl text-center text-white tracking-wider">
             {formatTime(Math.floor(minutes / 60))}:{formatTime(minutes % 60)}:
             {formatTime(seconds)}
           </h4>

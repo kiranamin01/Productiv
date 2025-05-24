@@ -149,13 +149,13 @@ const YTPlayer = ({ videoId: initialVideoId }) => {
       </div>
 
       {/* Controls */}
-      <div className="flex items-center justify-center gap-6 w-full">
+      <div className="flex items-center justify-center gap-2 sm:gap-4 md:gap-6 w-full px-2 sm:px-4">
         <button
           onClick={handleBackward}
-          className="p-3 rounded-full bg-white/30 hover:bg-white/40 text-indigo-800 transition-all duration-300 backdrop-blur-sm"
+          className="p-2 sm:p-3 rounded-full bg-white/30 hover:bg-white/40 text-indigo-800 transition-all duration-300 backdrop-blur-sm"
         >
           <svg
-            className="w-6 h-6"
+            className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -171,11 +171,11 @@ const YTPlayer = ({ videoId: initialVideoId }) => {
 
         <button
           onClick={handlePlayPause}
-          className="p-4 rounded-full bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg transform hover:scale-105 transition-all duration-300"
+          className="p-3 sm:p-4 rounded-full bg-indigo-600 hover:bg-indigo-700 text-white shadow-lg transform hover:scale-105 transition-all duration-300"
         >
           {isPlaying ? (
             <svg
-              className="w-8 h-8"
+              className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -189,7 +189,7 @@ const YTPlayer = ({ videoId: initialVideoId }) => {
             </svg>
           ) : (
             <svg
-              className="w-8 h-8"
+              className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -212,10 +212,10 @@ const YTPlayer = ({ videoId: initialVideoId }) => {
 
         <button
           onClick={handleForward}
-          className="p-3 rounded-full bg-white/30 hover:bg-white/40 text-indigo-800 transition-all duration-300 backdrop-blur-sm"
+          className="p-2 sm:p-3 rounded-full bg-white/30 hover:bg-white/40 text-indigo-800 transition-all duration-300 backdrop-blur-sm"
         >
           <svg
-            className="w-6 h-6"
+            className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -231,7 +231,7 @@ const YTPlayer = ({ videoId: initialVideoId }) => {
         <button
           id="playerhidebtn"
           onClick={handleHideOverlay}
-          className={`text-3xl rounded-full border p-3 transition-all duration-300 ${
+          className={`text-xl sm:text-2xl md:text-3xl rounded-full border p-2 sm:p-3 transition-all duration-300 ${
             hideOverlay
               ? "bg-indigo-600 text-white"
               : "text-indigo-600 hover:scale-105 hover:bg-indigo-600 hover:text-white"
@@ -242,18 +242,18 @@ const YTPlayer = ({ videoId: initialVideoId }) => {
       </div>
       <form
         onSubmit={handleSubmit}
-        className="ytvideolink mt-6 w-full max-w-md flex gap-2"
+        className="ytvideolink mt-4 sm:mt-6 w-full max-w-md flex flex-col sm:flex-row gap-2 px-2 sm:px-0"
       >
         <input
           type="text"
           placeholder="Enter Youtube Video Link"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
-          className="flex-1 px-4 py-2 rounded-lg border border-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-white/50 backdrop-blur-sm placeholder-indigo-400 text-indigo-800"
+          className="flex-1 px-3 sm:px-4 py-2 text-sm sm:text-base rounded-lg border border-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-white/50 backdrop-blur-sm placeholder-indigo-400 text-indigo-800"
         />
         <button
           type="submit"
-          className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+          className="px-4 py-2 bg-indigo-600 text-white text-sm sm:text-base rounded-lg hover:bg-indigo-700 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
         >
           Play
         </button>

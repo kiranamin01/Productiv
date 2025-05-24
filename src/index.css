@@ -7,6 +7,37 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @layer components {
+  /* WHITEBOARD CUSTOM  */
+  .whiteboard-card-box {
+    @apply resize overflow-auto min-w-[200px] min-h-[200px] max-w-[800px] max-h-[600px];
+  }
+
+  .wb-card-size {
+    @apply rounded-lg shadow-xl w-[440px] h-[540px] p-[5rem_2.5rem];
+  }
+
+  .wb-card-btn {
+    @apply text-white px-6 py-2 rounded-lg 
+    hover:bg-purple-700 active:bg-purple-800
+    transition-all duration-200 ease-in-out
+    shadow-sm hover:shadow-md 
+    transform hover:-translate-y-0.5 active:translate-y-0
+    flex items-center gap-2
+    font-medium tracking-wide
+    focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2;
+  }
+
+  /* BG - custom classes */
+  .bg-whiteboard {
+    @apply h-full 
+      w-full 
+      bg-white 
+      bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] 
+      [background-size:16px_16px] 
+      dark:bg-gray-950
+      dark:bg-[radial-gradient(#404040_1px,transparent_1px)] 
+      dark:[background-size:16px_16px];
+  }
   .bg-gradient {
     @apply bg-gradient-to-r from-purple-400 to-pink-400;
   }
@@ -40,25 +71,6 @@
     margin-right: 2rem;
     height: 2rem;
     width: auto;
-  }
-
-  .whiteboard-card-box {
-    @apply resize overflow-auto min-w-[200px] min-h-[200px] max-w-[800px] max-h-[600px];
-  }
-
-  .wb-card-size {
-    @apply w-[440px] h-[540px] px-20 py-10 rounded-lg shadow-xl;
-  }
-
-  .wb-card-btn {
-    @apply text-white px-6 py-2 rounded-lg 
-    hover:bg-purple-700 active:bg-purple-800
-    transition-all duration-200 ease-in-out
-    shadow-sm hover:shadow-md 
-    transform hover:-translate-y-0.5 active:translate-y-0
-    flex items-center gap-2
-    font-medium tracking-wide
-    focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2;
   }
 
   .pd-timer {

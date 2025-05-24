@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from "react";
 import { format } from "date-fns";
-import WeatherApi from "./WeatherApi";
+import WeatherApi from "../whiteboard/wb-app/WeatherApi";
 
 const DbWelcome = () => {
   const [formattedDate, setFormattedDate] = useState(
