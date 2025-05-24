@@ -12,9 +12,8 @@ const WeatherApi = () => {
       const options = {
         method: "GET",
         headers: {
-          "x-rapidapi-key":
-            "9477a275e8mshaea7fb8d9b8f72cp17c948jsn1fbb7ad73afa",
-          "x-rapidapi-host": "weatherapi-com.p.rapidapi.com",
+          "x-rapidapi-key": import.meta.env.VITE_WEATHER_API_KEY,
+          "x-rapidapi-host": import.meta.env.VITE_WEATHER_API_HOST,
         },
       };
 
