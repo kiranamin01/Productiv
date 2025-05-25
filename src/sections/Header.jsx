@@ -39,7 +39,7 @@ const Header = () => {
           </div>
         </div>
       </header>
-      <nav>
+      <nav className="bg-transparent">
         <div className="nav-container flex justify-between lg:justify-around lg:mx-6 items-center m-5">
           <div className="nav-left flex items-center space-x-4">
             <img src={Logo} alt="Logo" className="h-12" />
@@ -62,7 +62,7 @@ const Header = () => {
               onClick={handleMenu}
               className="navbar hidden absolute top-30 right-5 inset-0 z-30 bg-white/10 backdrop-blur-sm md:static md:bg-transparent md:flex md:items-center md:justify-center md:w-full"
             >
-              <div className="navbar-items w-[280px] rounded-xl ml-auto py-15 bg-white dark:bg-gray-900 p-6 shadow-2xl flex flex-col gap-6 md:flex-row md:items-center md:justify-center md:gap-4 md:w-full md:bg-transparent md:p-0 md:shadow-none text-2xl md:text-lg">
+              <div className="navbar-items w-[280px] rounded-xl ml-auto py-15 bg-white dark:bg-gray-900 md:dark:bg-transparent p-6 shadow-2xl flex flex-col gap-6 md:flex-row md:items-center md:justify-center md:gap-4 lg:gap-10 md:w-full md:bg-transparent md:p-0 md:shadow-none text-2xl md:text-lg">
                 <a
                   href="#about"
                   onClick={(e) => scrollToSection(e, "about")}

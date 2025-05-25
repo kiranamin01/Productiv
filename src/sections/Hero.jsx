@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import HomePageHero from "../assets/homepage-hero.png";
 import HeroAppImg from "../assets/app-ss.png";
+import HeroAppImgDark from "../assets/app-ss-dark.png";
 import { ArrowRight, ChevronRight, ExternalLink, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
@@ -121,7 +121,12 @@ const Hero = () => {
                 <img
                   src={HeroAppImg}
                   alt="Dashboard Preview"
-                  className="w-full"
+                  className="w-full block dark:hidden"
+                />
+                <img
+                  src={HeroAppImgDark}
+                  alt="Dashboard Preview Dark"
+                  className="w-full hidden dark:block"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent opacity-0"></div>
               </div>
