@@ -20,6 +20,13 @@ const Header = () => {
     }
   };
 
+  const handleMenu = () => {
+    const navbar = document.querySelector(".navbar");
+    const menuBtn = document.querySelector(".menubtn");
+    navbar.classList.toggle("hidden");
+    menuBtn.classList.toggle("active");
+  };
+
   return (
     <>
       <header className="backdrop-blur-sm">
@@ -41,45 +48,58 @@ const Header = () => {
             <div className="darkmodebtn md:hidden mr-4">
               <DarkMode />
             </div>
-            <button className="menubtn md:hidden">
-              <img src={MenuIcon} alt="Menu" className="h-12 dark:invert" />
+            <button
+              onClick={handleMenu}
+              className="menubtn hover:cursor-pointer hover:scale-90 md:hidden group"
+            >
+              <img
+                src={MenuIcon}
+                alt="MenuIcon"
+                className="h-12 dark:invert transition-transform duration-300 ease-in-out group-[.active]:rotate-90"
+              />
             </button>
-            <div className="navbar hidden md:flex items-center space-x-8 mx-5">
-              <a
-                href="#about"
-                onClick={(e) => scrollToSection(e, "about")}
-                className="text-gray-600 hover:text-black dark:hover:text-foreground transition-colors duration-200"
-              >
-                About
-              </a>
-              <a
-                href="#features"
-                onClick={(e) => scrollToSection(e, "features")}
-                className="text-gray-600 hover:text-black dark:hover:text-foreground transition-colors duration-200"
-              >
-                Features
-              </a>
-              <a
-                href="#testimonials"
-                onClick={(e) => scrollToSection(e, "testimonials")}
-                className="text-gray-600 hover:text-black dark:hover:text-foreground transition-colors duration-200"
-              >
-                Customers
-              </a>
-              <a
-                href="#updates"
-                onClick={(e) => scrollToSection(e, "updates")}
-                className="text-gray-600 hover:text-black dark:hover:text-foreground transition-colors duration-200"
-              >
-                Updates
-              </a>
-              <a
-                href="#help"
-                onClick={(e) => scrollToSection(e, "help")}
-                className="text-gray-600 hover:text-black dark:hover:text-foreground transition-colors duration-200"
-              >
-                Help
-              </a>
+            <div
+              onClick={handleMenu}
+              className="navbar hidden absolute top-30 right-5 inset-0 z-30 bg-white/10 backdrop-blur-sm md:static md:bg-transparent md:flex md:items-center md:justify-center md:w-full"
+            >
+              <div className="navbar-items w-[280px] rounded-xl ml-auto py-15 bg-white dark:bg-gray-900 p-6 shadow-2xl flex flex-col gap-6 md:flex-row md:items-center md:justify-center md:gap-4 md:w-full md:bg-transparent md:p-0 md:shadow-none text-2xl md:text-lg">
+                <a
+                  href="#about"
+                  onClick={(e) => scrollToSection(e, "about")}
+                  className="text-gray-600 hover:text-black hover:font-bold dark:text-gray-300 dark:hover:text-white transition-colors duration-200 md:dark:text-gray-600 relative group/item"
+                >
+                  About
+                  <span className="line-active absolute -bottom-1 left-0 w-0 h-0.5 bg-black dark:bg-white origin-left transition-transform duration-300 scale-x-0 group-hover/item:scale-x-100"></span>
+                </a>
+                <a
+                  href="#features"
+                  onClick={(e) => scrollToSection(e, "features")}
+                  className="text-gray-600 hover:text-black hover:font-bold dark:text-gray-300 dark:hover:text-white transition-colors duration-200 md:dark:text-gray-600"
+                >
+                  Features
+                </a>
+                <a
+                  href="#testimonials"
+                  onClick={(e) => scrollToSection(e, "testimonials")}
+                  className="text-gray-600 hover:text-black hover:font-bold dark:text-gray-300 dark:hover:text-white transition-colors duration-200 md:dark:text-gray-600"
+                >
+                  Customers
+                </a>
+                <a
+                  href="#updates"
+                  onClick={(e) => scrollToSection(e, "updates")}
+                  className="text-gray-600 hover:text-black hover:font-bold dark:text-gray-300 dark:hover:text-white transition-colors duration-200 md:dark:text-gray-600"
+                >
+                  Updates
+                </a>
+                <a
+                  href="#help"
+                  onClick={(e) => scrollToSection(e, "help")}
+                  className="text-gray-600 hover:text-black hover:font-bold dark:text-gray-300 dark:hover:text-white transition-colors duration-200 md:dark:text-gray-600"
+                >
+                  Help
+                </a>
+              </div>
             </div>
           </div>
           <div className="nav-right hidden md:flex mx-5 gap-4">
