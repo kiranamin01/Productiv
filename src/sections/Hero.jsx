@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import HeroAppImg from "../assets/app-ss.png";
-import HeroAppImgDark from "../assets/app-ss-dark.png";
+import HeroAppImg from "../assets/app-ss.webp";
+import HeroAppImgDark from "../assets/app-ss-dark.webp";
 import { ArrowRight, ChevronRight, ExternalLink, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";

@@ -24,7 +24,7 @@ const DbWelcome = () => {
       </h2>
       <div
         className="ds-text flex flex-col md:flex-row justify-between items-center gap-5 text-center p-6 rounded-xl shadow-lg backdrop-blur-sm bg-white/30 
-        bg-[url('/day-db.jpg')] dark:bg-[url('/night2-db.jpg')] bg-center bg-cover mt-2"
+        bg-[url('/day-db.webp')] dark:bg-[url('/night2-db.webp')] bg-center bg-cover mt-2"
       >
         <div className="ds-text-left w-70 space-y-4 backdrop-blur-md bg-white/40 p-6 rounded-lg border border-white/20 hover:bg-white/50 transition-all duration-300">
           <div className="date-section">

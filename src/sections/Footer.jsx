@@ -9,7 +9,7 @@ import {
   MapPin,
   Phone,
 } from "lucide-react";
-import Logo from "../assets/logosaas.png";
+import Logo from "../assets/logosaas.webp";
 
 const socialLinks = [
   { icon: Facebook, label: "Facebook" },

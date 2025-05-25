@@ -1,6 +1,6 @@
 import React from "react";
-import Logo from "../assets/logosaas.png";
-import MenuIcon from "../assets/menu.svg";
+import Logo from "../assets/logosaas.webp";
+import MenuIcon from "../assets/menu.webp";
 import { MdDarkMode } from "react-icons/md";
 import { SlLogin } from "react-icons/sl";
 import DarkMode from "@/DarkMode";

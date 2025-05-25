@@ -1,18 +1,18 @@
 import React, { useState } from "react";
-import TailwindLogo from "../assets/logos/tailwindcss.png";
-import ReactLogo from "../assets/logos/react.png";
-import ShadcnLogo from "../assets/logos/shadcn.jpg";
-import RapidAPILogo from "../assets/logos/rapidApi.png";
-import ClaudeLogo from "../assets/logos/claudeAi.png";
-import HtmlLogo from "../assets/logos/html.png";
-import CssLogo from "../assets/logos/css.png";
-import JavascriptLogo from "../assets/logos/js.png";
-import FigmaLogo from "../assets/logos/figma.png";
-import VscodeLogo from "../assets/logos/vscode.png";
-import GithubLogo from "../assets/logos/git.png";
-import VercelLogo from "../assets/logos/vercel.png";
-import FramermotionLogo from "../assets/logos/framermotion.png";
-import LucideLogo from "../assets/logos/lucide.png";
+import TailwindLogo from "../assets/logos/tailwindcss.webp";
+import ReactLogo from "../assets/logos/react.webp";
+import ShadcnLogo from "../assets/logos/shadcn.webp";
+import RapidAPILogo from "../assets/logos/rapidApi.webp";
+import ClaudeLogo from "../assets/logos/claudeAi.webp";
+import HtmlLogo from "../assets/logos/html.webp";
+import CssLogo from "../assets/logos/css.webp";
+import JavascriptLogo from "../assets/logos/js.webp";
+import FigmaLogo from "../assets/logos/figma.webp";
+import VscodeLogo from "../assets/logos/vscode.webp";
+import GithubLogo from "../assets/logos/git.webp";
+import VercelLogo from "../assets/logos/vercel.webp";
+import FramermotionLogo from "../assets/logos/framermotion.webp";
+import LucideLogo from "../assets/logos/lucide.webp";
 
 const LogoTicker = () => {
   const logos = [
