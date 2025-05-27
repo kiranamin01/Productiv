@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from "react";
 import YouTube from "react-youtube";
-import { MdHideImage } from "react-icons/md";
+import { ImageOff } from "lucide-react";
 
 import MusicWave from "./MusicWave.jsx";
 
@@ -237,7 +237,7 @@ const YTPlayer = ({ videoId: initialVideoId }) => {
               : "text-indigo-600 hover:scale-105 hover:bg-indigo-600 hover:text-white"
           }`}
         >
-          <MdHideImage />
+          <ImageOff />
         </button>
       </div>
       <form

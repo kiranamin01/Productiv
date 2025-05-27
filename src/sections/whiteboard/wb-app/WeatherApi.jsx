@@ -1,8 +1,20 @@
 import React, { useState, useEffect } from "react";
 
 const WeatherApi = () => {
-  const [weatherData, setWeatherData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [weatherData, setWeatherData] = useState(() => {
+    const savedData = localStorage.getItem("weatherData");
+    if (savedData) {
+      const parsedData = JSON.parse(savedData);
+      const storedTime = new Date(parsedData.timestamp);
+      const currentTime = new Date();
+      // Check if stored data is less than 30 minutes old
+      if (currentTime - storedTime < 30 * 60 * 1000) {
+        return parsedData.data;
+      }
+    }
+    return null;
+  });
+  const [loading, setLoading] = useState(!weatherData);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -21,6 +33,13 @@ const WeatherApi = () => {
         const response = await fetch(url, options);
         const data = await response.json();
         setWeatherData(data);
+        localStorage.setItem(
+          "weatherData",
+          JSON.stringify({
+            data: data,
+            timestamp: new Date().toISOString(),
+          })
+        );
         setLoading(false);
       } catch (error) {
         console.error("Weather API Error:", error);

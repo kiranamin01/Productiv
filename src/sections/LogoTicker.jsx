@@ -19,8 +19,8 @@ const LogoTicker = () => {
     {
       src: ReactLogo,
       alt: "React Logo",
-      width: 250,
-      height: 250,
+      width: 150,
+      height: 150,
     },
     {
       src: TailwindLogo,
@@ -127,7 +127,7 @@ const LogoTicker = () => {
                 alt={logo.alt}
                 width={logo.width}
                 height={logo.height}
-                className="logo-ticker-img w-auto h-18 transition-all duration-300 bg-primary/50 hover:bg-primary/90 rounded-full p-2 mx-6 hover:cursor-pointer"
+                className="logo-ticker-img w-18 h-18 transition-all duration-300 bg-primary/50 hover:bg-primary/90 rounded-full p-2 mx-6 hover:cursor-pointer"
                 onMouseEnter={() => setIsPaused(true)}
                 onMouseLeave={() => setIsPaused(false)}
               />
@@ -139,7 +139,7 @@ const LogoTicker = () => {
                 alt={logo.alt}
                 width={logo.width}
                 height={logo.height}
-                className="logo-ticker-img w-auto h-18 hover:grayscale-0 transition-all duration-300 bg-primary/50 hover:bg-primary/90 rounded-full p-2 mx-6 hover:cursor-pointer"
+                className="logo-ticker-img w-18 h-18 hover:grayscale-0 transition-all duration-300 bg-primary/50 hover:bg-primary/90 rounded-full p-2 mx-6 hover:cursor-pointer"
                 onMouseEnter={() => setIsPaused(true)}
                 onMouseLeave={() => setIsPaused(false)}
               />

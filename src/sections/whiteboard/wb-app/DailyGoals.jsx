@@ -207,16 +207,29 @@ const Task = ({
 };
 
 const DailyGoals = () => {
-  const [tasks, setTasks] = useState([
-    {
-      id: "1",
-      content: "Complete project",
-      subTasks: [{ id: "test-1", content: "Test subtask", completed: false }],
-    },
-  ]);
+  const [tasks, setTasks] = useState(() => {
+    // Load tasks from localStorage on component mount
+    const savedTasks = localStorage.getItem("dailyGoals");
+    return savedTasks
+      ? JSON.parse(savedTasks)
+      : [
+          {
+            id: "1",
+            content: "Complete project",
+            subTasks: [
+              { id: "test-1", content: "Test subtask", completed: false },
+            ],
+          },
+        ];
+  });
 
   const [newTask, setNewTask] = useState("");
   const [editingTask, setEditingTask] = useState(null);
+
+  // Save tasks to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem("dailyGoals", JSON.stringify(tasks));
+  }, [tasks]);
 
   const addTask = () => {
     if (newTask.trim()) {

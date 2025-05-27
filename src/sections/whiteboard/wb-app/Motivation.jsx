@@ -2,8 +2,20 @@ import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 
 const Motivation = () => {
-  const [quote, setQuote] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [quote, setQuote] = useState(() => {
+    const savedQuote = localStorage.getItem("motivationQuote");
+    if (savedQuote) {
+      const parsedQuote = JSON.parse(savedQuote);
+      const storedTime = new Date(parsedQuote.timestamp);
+      const currentTime = new Date();
+      // Check if stored quote is less than 24 hours old
+      if (currentTime - storedTime < 24 * 60 * 60 * 1000) {
+        return parsedQuote.data;
+      }
+    }
+    return null;
+  });
+  const [loading, setLoading] = useState(!quote);
   const [error, setError] = useState(null);
 
   const fetchQuote = useCallback(async () => {
@@ -23,6 +35,13 @@ const Motivation = () => {
     try {
       const response = await axios.request(options);
       setQuote(response.data);
+      localStorage.setItem(
+        "motivationQuote",
+        JSON.stringify({
+          data: response.data,
+          timestamp: new Date().toISOString(),
+        })
+      );
       setLoading(false);
     } catch (error) {
       console.error("Error fetching quote:", error);
@@ -36,7 +55,14 @@ const Motivation = () => {
   }, [fetchQuote]);
 
   const [personalMotivation, setPersonalMotivation] = useState("");
-  const [savedMotivations, setSavedMotivations] = useState([]);
+  const [savedMotivations, setSavedMotivations] = useState(() => {
+    const saved = localStorage.getItem("savedMotivations");
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("savedMotivations", JSON.stringify(savedMotivations));
+  }, [savedMotivations]);
 
   const handleSaveMotivation = () => {
     if (personalMotivation.trim()) {

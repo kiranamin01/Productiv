@@ -5,7 +5,7 @@ import HeroAppImgDark from "../assets/app-ss-dark.webp";
 import { ArrowRight, ChevronRight, ExternalLink, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
+// import { cn } from "@/lib/utils";
 
 const Hero = () => {
   const navigate = useNavigate();
@@ -121,12 +121,22 @@ const Hero = () => {
                 <img
                   src={HeroAppImg}
                   alt="Dashboard Preview"
-                  className="w-full block dark:hidden"
+                  className="block dark:hidden"
+                  loading="eager"
+                  fetchpriority="high"
+                  width="1200"
+                  height="800"
+                  style={{ maxWidth: "100%", height: "auto" }}
                 />
                 <img
                   src={HeroAppImgDark}
                   alt="Dashboard Preview Dark"
-                  className="w-full hidden dark:block"
+                  className="hidden dark:block"
+                  loading="eager"
+                  fetchpriority="high"
+                  width="1200"
+                  height="800"
+                  style={{ maxWidth: "100%", height: "auto" }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent opacity-0"></div>
               </div>

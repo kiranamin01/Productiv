@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { DndContext, closestCenter } from "@dnd-kit/core";
 import {
   SortableContext,
@@ -76,11 +76,20 @@ const Task = ({ id, content, status, onDelete, onEdit, onStatusChange }) => {
 };
 
 const ToDoList = () => {
-  const [tasks, setTasks] = useState({
-    todo: [],
-    inProgress: [],
-    done: [],
+  const [tasks, setTasks] = useState(() => {
+    const savedTasks = localStorage.getItem("todoTasks");
+    return savedTasks
+      ? JSON.parse(savedTasks)
+      : {
+          todo: [],
+          inProgress: [],
+          done: [],
+        };
   });
+
+  useEffect(() => {
+    localStorage.setItem("todoTasks", JSON.stringify(tasks));
+  }, [tasks]);
   const [newTask, setNewTask] = useState("");
   const [editingTask, setEditingTask] = useState(null); // Stores the whole task object being edited
 

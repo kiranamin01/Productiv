@@ -1,8 +1,7 @@
 import React from "react";
 import Logo from "../assets/logosaas.webp";
 import MenuIcon from "../assets/menu.webp";
-import { MdDarkMode } from "react-icons/md";
-import { SlLogin } from "react-icons/sl";
+import { LogIn } from "lucide-react";
 import DarkMode from "@/DarkMode";
 import { useNavigate } from "react-router-dom";
 
@@ -42,7 +41,7 @@ const Header = () => {
       <nav className="bg-transparent">
         <div className="nav-container flex justify-between lg:justify-around lg:mx-6 items-center m-5">
           <div className="nav-left flex items-center space-x-4">
-            <img src={Logo} alt="Logo" className="h-12" />
+            <img src={Logo} alt="Logo" className="w-10 h-10 ml-4" />
           </div>
           <div className="nav-center flex items-center">
             <div className="darkmodebtn md:hidden mr-4">
@@ -110,7 +109,7 @@ const Header = () => {
               onClick={handlelogin}
               className="loginbtn flex items-center dark-mode-btn hover:text-white hover:gap-0.5"
             >
-              <SlLogin className="text-lg mr-1" />
+              <LogIn className="text-lg mr-1" />
               Login
             </button>
           </div>

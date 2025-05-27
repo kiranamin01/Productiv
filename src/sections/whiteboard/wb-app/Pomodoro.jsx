@@ -1,11 +1,25 @@
 import { React, useState, useEffect, useRef } from "react";
-import { FaPlay, FaPause } from "react-icons/fa";
-import { RiResetLeftLine } from "react-icons/ri";
+import { CirclePlay, CirclePause, RotateCcw } from "lucide-react";
 
 const Pomodoro = () => {
-  const [minutes, setMinutes] = useState(25);
-  const [seconds, setSeconds] = useState(0);
-  const [isActive, setIsActive] = useState(false);
+  const [minutes, setMinutes] = useState(() => {
+    const savedMinutes = localStorage.getItem("pomodoroMinutes");
+    return savedMinutes ? parseInt(savedMinutes) : 25;
+  });
+  const [seconds, setSeconds] = useState(() => {
+    const savedSeconds = localStorage.getItem("pomodoroSeconds");
+    return savedSeconds ? parseInt(savedSeconds) : 0;
+  });
+  const [isActive, setIsActive] = useState(() => {
+    const savedIsActive = localStorage.getItem("pomodoroIsActive");
+    return savedIsActive ? JSON.parse(savedIsActive) : false;
+  });
+
+  useEffect(() => {
+    localStorage.setItem("pomodoroMinutes", minutes.toString());
+    localStorage.setItem("pomodoroSeconds", seconds.toString());
+    localStorage.setItem("pomodoroIsActive", JSON.stringify(isActive));
+  }, [minutes, seconds, isActive]);
   const intervalRef = useRef(null);
 
   useEffect(() => {
@@ -111,17 +125,17 @@ const Pomodoro = () => {
           onClick={handlePlay}
           disabled={isActive}
         >
-          <FaPlay className="text-white text-xl" />
+          <CirclePlay className="text-white text-xl" />
         </button>
         <button
           className={`pause-btn pd-switch-btn ${!isActive ? "opacity-50" : ""}`}
           onClick={handlePause}
           disabled={!isActive}
         >
-          <FaPause className="text-white text-xl" />
+          <CirclePause className="text-white text-xl" />
         </button>
         <button className="reset-btn pd-switch-btn" onClick={handleReset}>
-          <RiResetLeftLine className="text-white text-xl" />
+          <RotateCcw className="text-white text-xl" />
         </button>
       </div>
     </div>
