@@ -1,5 +1,5 @@
-import Dashboard from "@/sections/dashboard/Dashboard";
-import Whiteboard from "@/sections/whiteboard/Whiteboard";
+import Dashboard from "@/components/layouts/dashboard/Dashboard";
+import Whiteboard from "@/components/layouts/whiteboard/Whiteboard";
 
 // import DB_Day from "../assets/day-db.jpg";
 // import DB_Night from "../assets/night-db.jpg";

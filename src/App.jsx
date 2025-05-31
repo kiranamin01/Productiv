@@ -3,23 +3,31 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MainApp from "./pages/MainApp";
 
 // Prioritize critical components
-const LazyHeader = lazy(() => import("./sections/Header"));
+const LazyHeader = lazy(() => import("./components/layouts/landing/Header"));
 const LazyHero = lazy(() =>
   Promise.all([
-    import("./sections/Hero"),
+    import("./components/layouts/landing/Hero"),
     // Add a small delay to ensure critical resources load first
     new Promise((resolve) => setTimeout(resolve, 100)),
   ]).then(([module]) => module)
 );
 
 // Lower priority components with increasing delays
-const LazyFooter = lazy(() => import("./sections/Footer"));
-const LazyLogoTicker = lazy(() => import("./sections/LogoTicker"));
-const LazyPricing = lazy(() => import("./sections/Pricing"));
-const LazyProductShowcase = lazy(() => import("./sections/ProductShowcase"));
-const LazyTestimonials = lazy(() => import("./sections/Testimonials"));
-const LazyCallToAction = lazy(() => import("./sections/CallToAction"));
-const LazyFAQ = lazy(() => import("./sections/FAQ"));
+const LazyFooter = lazy(() => import("./components/layouts/landing/Footer"));
+const LazyLogoTicker = lazy(() =>
+  import("./components/layouts/landing/LogoTicker")
+);
+const LazyPricing = lazy(() => import("./components/layouts/landing/Pricing"));
+const LazyProductShowcase = lazy(() =>
+  import("./components/layouts/landing/ProductShowcase")
+);
+const LazyTestimonials = lazy(() =>
+  import("./components/layouts/landing/Testimonials")
+);
+const LazyCallToAction = lazy(() =>
+  import("./components/layouts/landing/CallToAction")
+);
+const LazyFAQ = lazy(() => import("./components/layouts/landing/FAQ"));
 
 // Custom loading component that doesn't cause layout shifts
 const SectionLoader = () => (

@@ -1,33 +1,23 @@
 import React, { useState } from "react";
-import TailwindLogo from "../assets/logos/tailwindcss.webp";
-import ReactLogo from "../assets/logos/react.webp";
-import ShadcnLogo from "../assets/logos/shadcn.webp";
-import RapidAPILogo from "../assets/logos/rapidApi.webp";
-import ClaudeLogo from "../assets/logos/claudeAi.webp";
-import HtmlLogo from "../assets/logos/html.webp";
-import CssLogo from "../assets/logos/css.webp";
-import JavascriptLogo from "../assets/logos/js.webp";
-import FigmaLogo from "../assets/logos/figma.webp";
-import VscodeLogo from "../assets/logos/vscode.webp";
-import GithubLogo from "../assets/logos/git.webp";
-import VercelLogo from "../assets/logos/vercel.webp";
-import FramermotionLogo from "../assets/logos/framermotion.webp";
-import LucideLogo from "../assets/logos/lucide.webp";
+import TailwindLogo from "@/assets/logos/tailwindcss.webp";
+import ReactLogo from "@/assets/logos/react.webp";
+import ShadcnLogo from "@/assets/logos/shadcn.webp";
+import RapidAPILogo from "@/assets/logos/rapidApi.webp";
+import ClaudeLogo from "@/assets/logos/claudeAi.webp";
+import HtmlLogo from "@/assets/logos/html.webp";
+import CssLogo from "@/assets/logos/css.webp";
+import JavascriptLogo from "@/assets/logos/js.webp";
+import FigmaLogo from "@/assets/logos/figma.webp";
+import VscodeLogo from "@/assets/logos/vscode.webp";
+import GithubLogo from "@/assets/logos/git.webp";
+import VercelLogo from "@/assets/logos/vercel.webp";
+import FramermotionLogo from "@/assets/logos/framermotion.webp";
+import LucideLogo from "@/assets/logos/lucide.webp";
 
 const LogoTicker = () => {
   const logos = [
-    {
-      src: ReactLogo,
-      alt: "React Logo",
-      width: 150,
-      height: 150,
-    },
-    {
-      src: TailwindLogo,
-      alt: "Tailwind CSS Logo",
-      width: 350,
-      height: 350,
-    },
+    { src: ReactLogo, alt: "React Logo", width: 100, height: 100 },
+    { src: TailwindLogo, alt: "Tailwind CSS Logo", width: 100, height: 100 },
     {
       src: ShadcnLogo,
       alt: "Shadcn UI Logo",
@@ -130,6 +120,7 @@ const LogoTicker = () => {
                 className="logo-ticker-img w-18 h-18 transition-all duration-300 bg-primary/50 hover:bg-primary/90 rounded-full p-2 mx-6 hover:cursor-pointer"
                 onMouseEnter={() => setIsPaused(true)}
                 onMouseLeave={() => setIsPaused(false)}
+                loading="lazy"
               />
             ))}
             {logos.map((logo, index) => (
@@ -142,6 +133,7 @@ const LogoTicker = () => {
                 className="logo-ticker-img w-18 h-18 hover:grayscale-0 transition-all duration-300 bg-primary/50 hover:bg-primary/90 rounded-full p-2 mx-6 hover:cursor-pointer"
                 onMouseEnter={() => setIsPaused(true)}
                 onMouseLeave={() => setIsPaused(false)}
+                loading="lazy"
               />
             ))}
           </div>
