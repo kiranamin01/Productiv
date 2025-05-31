@@ -1,49 +1,70 @@
-// import CallToAction from "../src/sections/CallToAction";
-// import Footer from "../src/sections/Footer";
-// import Header from "../src/sections/Header";
-// import Hero from "../src/sections/Hero";
-// import LogoTicker from "../src/sections/LogoTicker";
-// import Pricing from "../src/sections/Pricing";
-// import ProductShowcase from "../src/sections/ProductShowcase";
-// import Testimonials from "../src/sections/Testimonials";
-// import FAQ from "../src/sections/FAQ";
 import { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MainApp from "./pages/MainApp";
-import { Loader } from "lucide-react";
 
-// Create a Home component that combines all landing page sections
-// Lazy load components
-const LazyCallToAction = lazy(() => import("../src/sections/CallToAction"));
-const LazyFooter = lazy(() => import("../src/sections/Footer"));
-const LazyHeader = lazy(() => import("../src/sections/Header"));
-const LazyHero = lazy(() => import("../src/sections/Hero"));
-const LazyLogoTicker = lazy(() => import("../src/sections/LogoTicker"));
-const LazyPricing = lazy(() => import("../src/sections/Pricing"));
-const LazyProductShowcase = lazy(() =>
-  import("../src/sections/ProductShowcase")
+// Prioritize critical components
+const LazyHeader = lazy(() => import("./sections/Header"));
+const LazyHero = lazy(() =>
+  Promise.all([
+    import("./sections/Hero"),
+    // Add a small delay to ensure critical resources load first
+    new Promise((resolve) => setTimeout(resolve, 100)),
+  ]).then(([module]) => module)
 );
-const LazyTestimonials = lazy(() => import("../src/sections/Testimonials"));
-const LazyFAQ = lazy(() => import("../src/sections/FAQ"));
+
+// Lower priority components with increasing delays
+const LazyFooter = lazy(() => import("./sections/Footer"));
+const LazyLogoTicker = lazy(() => import("./sections/LogoTicker"));
+const LazyPricing = lazy(() => import("./sections/Pricing"));
+const LazyProductShowcase = lazy(() => import("./sections/ProductShowcase"));
+const LazyTestimonials = lazy(() => import("./sections/Testimonials"));
+const LazyCallToAction = lazy(() => import("./sections/CallToAction"));
+const LazyFAQ = lazy(() => import("./sections/FAQ"));
+
+// Custom loading component that doesn't cause layout shifts
+const SectionLoader = () => (
+  <div
+    style={{
+      minHeight: "200px",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+    }}
+  >
+    <div className="loading-indicator"></div>
+  </div>
+);
 
 const Home = () => {
   return (
     <>
-      <Suspense
-        fallback={
-          <div>
-            <p className="opacity-0">Loading...</p>
-          </div>
-        }
-      >
-        <LazyHeader />
+      <LazyHeader />
+
+      {/* Hero section is critical for LCP */}
+      <Suspense fallback={<SectionLoader />}>
         <LazyHero />
+      </Suspense>
+
+      {/* Other sections can load progressively */}
+      <Suspense fallback={<SectionLoader />}>
         <LazyLogoTicker />
+      </Suspense>
+      <Suspense fallback={<SectionLoader />}>
         <LazyProductShowcase />
+      </Suspense>
+      <Suspense fallback={<SectionLoader />}>
         <LazyTestimonials />
+      </Suspense>
+      <Suspense fallback={<SectionLoader />}>
         <LazyPricing />
+      </Suspense>
+      <Suspense fallback={<SectionLoader />}>
         <LazyCallToAction />
+      </Suspense>
+      <Suspense fallback={<SectionLoader />}>
         <LazyFAQ />
+      </Suspense>
+      <Suspense fallback={<SectionLoader />}>
         <LazyFooter />
       </Suspense>
     </>

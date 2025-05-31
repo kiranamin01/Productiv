@@ -1,10 +1,15 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { useNavigate } from "react-router-dom";
-import HeroAppImg from "../assets/app-ss.webp";
-import HeroAppImgDark from "../assets/app-ss-dark.webp";
-import { ArrowRight, ChevronRight, ExternalLink, Github } from "lucide-react";
+import {
+  ArrowRight,
+  ChevronRight,
+  ExternalLink,
+  Github,
+  Heading2,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+
 // import { cn } from "@/lib/utils";
 
 const Hero = () => {
@@ -41,7 +46,7 @@ const Hero = () => {
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
             className="text-balance bg-gradient-to-tl from-primary/10 via-foreground/85 to-foreground/50 bg-clip-text text-center text-4xl tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl text-transparent"
           >
             The all-in-one Productivity Management App.
@@ -51,7 +56,7 @@ const Hero = () => {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
             className="mx-auto mt-6 max-w-2xl text-center text-lg text-muted-foreground"
           >
             Streamline your workflow, boost focus, and achieve more with our
@@ -66,18 +71,20 @@ const Hero = () => {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
           >
-            <Button
-              size="lg"
-              className="getstarted group relative overflow-hidden rounded-full bg-primary px-6 text-primary-foreground shadow-lg transition-all duration-300 hover:shadow-primary/30"
-              onClick={() => navigate("/app")}
-            >
-              <span className="relative z-10 flex items-center">
-                Get Started
-                <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-              </span>
-              <span className="absolute inset-0 z-0 bg-gradient-to-r from-primary via-primary/90 to-primary/80 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
-            </Button>
-
+            {" "}
+            <Suspense fallback={<h2>App Loading.....</h2>}>
+              <Button
+                size="lg"
+                className="getstarted group relative overflow-hidden rounded-full bg-primary px-6 text-primary-foreground shadow-lg transition-all duration-300 hover:shadow-primary/30"
+                onClick={() => navigate("/app")}
+              >
+                <span className="relative z-10 flex items-center">
+                  Get Started
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                </span>
+                <span className="absolute inset-0 z-0 bg-gradient-to-r from-primary via-primary/90 to-primary/80 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
+              </Button>
+            </Suspense>
             <Button
               variant="outline"
               size="lg"
@@ -119,23 +126,27 @@ const Hero = () => {
               </div>
               <div className="relative">
                 <img
-                  src={HeroAppImg}
-                  alt="Dashboard Preview"
+                  src="/app-ss.webp"
+                  alt="App Preview"
                   className="block dark:hidden"
                   loading="eager"
                   fetchpriority="high"
                   width="1200"
                   height="800"
+                  decoding="sync"
+                  importance="high"
                   style={{ maxWidth: "100%", height: "auto" }}
                 />
                 <img
-                  src={HeroAppImgDark}
-                  alt="Dashboard Preview Dark"
+                  src="/app-ss-dark.webp"
+                  alt="App Preview Dark"
                   className="hidden dark:block"
                   loading="eager"
                   fetchpriority="high"
                   width="1200"
                   height="800"
+                  decoding="sync"
+                  importance="high"
                   style={{ maxWidth: "100%", height: "auto" }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent opacity-0"></div>
