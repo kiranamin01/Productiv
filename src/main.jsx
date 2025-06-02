@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 
 // Import Loader before using it
-import Loader from "./Loader";
+import Loader from "@/components/atoms/Loader";
 
 // Preload the App component immediately
 const preloadPromise = import("./App");
