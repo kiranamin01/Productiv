@@ -15,12 +15,10 @@ const Task = ({
   const [newSubTask, setNewSubTask] = useState("");
   const [editingSubTaskId, setEditingSubTaskId] = useState(null);
 
-  // Add useEffect to sync subTasks with parent component
   useEffect(() => {
     setSubTasks(initialSubTasks);
   }, [initialSubTasks]);
 
-  // Update useEffect to call onSubTasksChange
   useEffect(() => {
     if (onSubTasksChange) {
       onSubTasksChange(id, subTasks);
@@ -30,7 +28,6 @@ const Task = ({
   const handleAddSubTask = () => {
     if (newSubTask.trim()) {
       if (editingSubTaskId) {
-        // Update existing subtask
         setSubTasks((prevSubTasks) =>
           prevSubTasks.map((task) =>
             task.id === editingSubTaskId
@@ -40,7 +37,6 @@ const Task = ({
         );
         setEditingSubTaskId(null);
       } else {
-        // Add new subtask
         const newSubTaskItem = {
           id: `${id}-sub-${Date.now()}`,
           content: newSubTask,
@@ -206,27 +202,10 @@ const Task = ({
   );
 };
 
-const DailyGoals = () => {
-  const [tasks, setTasks] = useState(() => {
-    // Load tasks from localStorage on component mount
-    const savedTasks = localStorage.getItem("dailyGoals");
-    return savedTasks
-      ? JSON.parse(savedTasks)
-      : [
-          {
-            id: "1",
-            content: "Complete project",
-            subTasks: [
-              { id: "test-1", content: "Test subtask", completed: false },
-            ],
-          },
-        ];
-  });
-
+const DailyGoals = ({ tasks, setTasks }) => {
   const [newTask, setNewTask] = useState("");
   const [editingTask, setEditingTask] = useState(null);
 
-  // Save tasks to localStorage whenever they change
   useEffect(() => {
     localStorage.setItem("dailyGoals", JSON.stringify(tasks));
   }, [tasks]);
@@ -247,7 +226,6 @@ const DailyGoals = () => {
 
   const deleteTask = (taskId) => {
     setTasks((prev) => prev.filter((task) => task.id !== taskId));
-    // Reset editing state if the deleted task was being edited
     if (editingTask && editingTask.id === taskId) {
       setEditingTask(null);
       setNewTask("");
@@ -276,13 +254,16 @@ const DailyGoals = () => {
     }
   };
 
-  const handleSubTasksChange = useCallback((taskId, updatedSubTasks) => {
-    setTasks((prev) =>
-      prev.map((task) =>
-        task.id === taskId ? { ...task, subTasks: updatedSubTasks } : task
-      )
-    );
-  }, []);
+  const handleSubTasksChange = useCallback(
+    (taskId, updatedSubTasks) => {
+      setTasks((prev) =>
+        prev.map((task) =>
+          task.id === taskId ? { ...task, subTasks: updatedSubTasks } : task
+        )
+      );
+    },
+    [setTasks]
+  );
 
   return (
     <div className="daily-goals bg-green-100 p-2 sm:p-3 md:p-4 rounded-lg shadow min-h-[28rem] max-h-[calc(100vh-2rem)] overflow-auto">
