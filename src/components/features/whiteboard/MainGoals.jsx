@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import InputBox from "@/components/atoms/InputBox";
 import { CiCircleChevDown } from "react-icons/ci";
+import IconButton from "@/components/ui/iconbtn"; // Assuming you have an IconButton component
 
 // SubGoal component for subtasks under each main goal
 const SubGoal = ({
@@ -9,7 +10,7 @@ const SubGoal = ({
   onDelete,
   setEditingSubGoalId,
   setNewSubGoal,
-  onSubGoalCheckbox = { onSubGoalCheckbox },
+  onSubGoalCheckbox,
 }) => (
   <li className="flex items-center gap-2 bg-blue-100 p-2 rounded">
     <input
@@ -22,6 +23,13 @@ const SubGoal = ({
         }
       }}
       className="form-checkbox h-4 w-4 text-blue-600"
+    />
+    <IconButton
+      onClick={() => {
+        if (onSubGoalCheckbox) {
+          onSubGoalCheckbox(subGoal.content);
+        }
+      }}
     />
     <span className={`flex-grow ${subGoal.completed ? "line-through" : ""}`}>
       {subGoal.content}
@@ -104,6 +112,8 @@ const MainGoalItem = ({
       setNewSubGoal("");
     }
   };
+
+
 
   return (
     <li className="saveddailygoals mb-2 text-gray-800 font-[Poppins] bg-blue-50 border-l-4 border-blue-400 p-3 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 flex flex-col relative">

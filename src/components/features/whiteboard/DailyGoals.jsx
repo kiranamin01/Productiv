@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useEffect } from "react";
 import InputBox from "@/components/atoms/InputBox";
 import { CiCircleChevDown } from "react-icons/ci";
+import IconButton  from "@/components/ui/iconbtn";
 
 const Task = ({
   id,
@@ -9,6 +10,8 @@ const Task = ({
   onDelete,
   subTasks: initialSubTasks = [],
   onSubTasksChange,
+  onSubGoalCheckbox,
+  subGoal,
 }) => {
   const [showSubTasks, setShowSubTasks] = useState(false);
   const [subTasks, setSubTasks] = useState(initialSubTasks);
@@ -88,6 +91,8 @@ const Task = ({
           />
         </button>
 
+        
+
         <span className="flex-grow">
           {content}
           {subTasks && subTasks.length > 0 && (
@@ -140,6 +145,12 @@ const Task = ({
                   onChange={() => toggleSubTask(subTask.id)}
                   className="form-checkbox h-4 w-4 text-green-600"
                 />
+                <IconButton
+                      onClick={() => {
+                        if (onSubGoalCheckbox) {
+                          onSubGoalCheckbox(subGoal.content);
+                        }
+                      }} />
                 <span
                   className={`flex-grow ${
                     subTask.completed ? "line-through" : ""

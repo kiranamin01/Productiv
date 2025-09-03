@@ -9,7 +9,8 @@ import { CSS } from "@dnd-kit/utilities";
 import InputBox from "@/components/atoms/InputBox";
 
 // Task component with drag-and-drop functionality
-const Task = ({ id, content, status, onDelete, onEdit, onStatusChange }) => {
+
+const Task = ({ id, content, status, onDelete, onEdit, onStatusChange, ...props }) => {
   // Ensure 'id' passed to useSortable is a string if it's not already.
   // However, consistency is key; if task IDs are numbers, use numbers everywhere for dnd-kit.
   // For this example, we'll assume IDs are consistently strings as per changes in ToDoList.
@@ -32,6 +33,7 @@ const Task = ({ id, content, status, onDelete, onEdit, onStatusChange }) => {
       style={style}
       {...attributes}
       {...listeners}
+      {...props}
       className={`${statusColors[status]} p-3 rounded-lg shadow-sm mb-2 cursor-move hover:shadow-md transition-all duration-200`}
     >
       <div className="flex justify-between items-center">
@@ -93,16 +95,29 @@ const ToDoList = () => {
   const [newTask, setNewTask] = useState("");
   const [editingTask, setEditingTask] = useState(null); // Stores the whole task object being edited
 
+  // const addTask = () => {
+  //   if (newTask.trim()) {
+  //     const newId = String(Date.now()); // Ensure ID is a string
+  //     setTasks((prev) => ({
+  //       ...prev,
+  //       todo: [...prev.todo, { id: newId, content: newTask, status: "todo" }],
+  //     }));
+  //     setNewTask("");
+  //   }
+  // };
+
   const addTask = () => {
     if (newTask.trim()) {
       const newId = String(Date.now()); // Ensure ID is a string
       setTasks((prev) => ({
         ...prev,
-        todo: [...prev.todo, { id: newId, content: newTask, status: "todo" }],
+        // Ensure prev.todo is an array before spreading it
+        todo: [...(prev.todo || []), { id: newId, content: newTask, status: "todo" }],
       }));
       setNewTask("");
     }
   };
+
 
   const deleteTask = (taskId) => {
     setTasks((prev) => {
@@ -217,10 +232,15 @@ const ToDoList = () => {
             status: "todo",
           };
 
-          setTasks((prev) => ({
-            ...prev,
-            todo: [...prev.todo, newTask],
-          }));
+          // setTasks((prev) => ({
+          //   ...prev,
+          //   todo: [...prev.todo, newTask],
+          // }));
+
+          setTasks(prev => ({
+          ...prev,
+        todo: Array.isArray(prev.todo) ? [...prev.todo, newTask] : [newTask]
+      }));
 
           return;
         }
@@ -298,6 +318,7 @@ const ToDoList = () => {
                       onDelete={deleteTask}
                       onEdit={editTask}
                       onStatusChange={handleStatusChange}
+                      data-id={String(task.id)} // Add data-id for drag-and-drop
                     />
                   ))}
                   {statusTasks.length === 0 && (

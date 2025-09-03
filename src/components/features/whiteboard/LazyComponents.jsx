@@ -9,3 +9,4 @@ export const LazyPlanner = lazy(() => import("./Planner"));
 export const LazyPomodoro = lazy(() => import("./Pomodoro"));
 export const LazyToDoList = lazy(() => import("./ToDoList"));
 export const LazyWeatherApi = lazy(() => import("./WeatherApi"));
+export const LazyReminder = lazy(() => import("./Reminder"));

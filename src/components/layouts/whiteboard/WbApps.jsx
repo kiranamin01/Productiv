@@ -7,6 +7,7 @@ import {
   LazyMotivation,
   LazyPomodoro,
   LazyMusicPlayer,
+  LazyReminder,
 } from "@/components/features/whiteboard/LazyComponents";
 
 const WbApps = () => {
@@ -18,14 +19,33 @@ const WbApps = () => {
     { id: "motivation", type: "motivation" },
     { id: "pomodoro", type: "pomodoro" },
     { id: "musicPlayer", type: "musicPlayer" },
+    { id: "reminder", type: "reminder" },
   ];
 
   // State for daily goals tasks (if you want to sync subgoals as subtasks)
   const [tasks, setTasks] = useState([]);
+  const [todoTasks, setTodoTasks] = useState([]); // Added state for todo tasks
 
   // Handler to add subgoal as subtask to first daily goal
   const addSubTaskFromMainGoal = useCallback((subGoalContent) => {
     setTasks((prev) => {
+      if (prev.length === 0) return prev;
+      const firstTask = prev[0];
+      const newSubTask = {
+        id: `${firstTask.id}-sub-${Date.now()}`,
+        content: subGoalContent,
+        completed: false,
+      };
+      return prev.map((task, idx) =>
+        idx === 0
+          ? { ...task, subTasks: [...(task.subTasks || []), newSubTask] }
+          : task
+      );
+    });
+  }, []);
+
+  const addSubTaskToTodo = useCallback((subGoalContent) => {
+    setTodoTasks((prev) => {
       if (prev.length === 0) return prev;
       const firstTask = prev[0];
       const newSubTask = {
@@ -60,11 +80,15 @@ const WbApps = () => {
                 {item.type === "dailyGoals" && (
                   <LazyDailyGoals tasks={tasks} setTasks={setTasks} />
                 )}
-                {item.type === "todoList" && <LazyToDoList />}
+                {item.type === "todoList" && (
+                  <LazyToDoList tasks={todoTasks} setTasks={setTodoTasks} 
+                  onSubGoalCheckbox={addSubTaskToTodo} />
+                )}
                 {item.type === "planner" && <LazyPlanner />}
                 {item.type === "motivation" && <LazyMotivation />}
                 {item.type === "pomodoro" && <LazyPomodoro />}
                 {item.type === "musicPlayer" && <LazyMusicPlayer />}
+                {item.type === "reminder" && <LazyReminder />}
               </Suspense>
             </div>
           </div>
